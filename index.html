@@ -1,11 +1,16 @@
-<html>
-  <head>
-    <title>
-      Prakhar Gupta | Home
-    </title>
-  </head>
-  <body>
-    kid
-    
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python in HTML</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.10.4/brython.min.js"></script>
+</head>
+<body onload="brython()">
+    <h1>Python Program in HTML</h1>
+    <script type="text/python">
+        from browser import document
+        document.body.innerHTML += "<p>5 + 3 = {}</p>".format(5 + 3)
+    </script>
+</body>
 </html>
