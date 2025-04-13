@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Memory Based Questions - Full Answer Sheet</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; }
+    h1, h2 { color: #2c3e50; }
+    h2 { border-bottom: 2px solid #2c3e50; padding-bottom: 4px; margin-top: 30px; }
+    .question { margin-bottom: 5px; font-weight: bold; }
+    .answer { color: #27ae60; font-weight: bold; }
+    .explanation { color: #7f8c8d; margin-bottom: 15px; }
+    .msq, .numerical { margin-left: 20px; }
+    .scenario { margin-left: 20px; font-style: italic; }
+  </style>
+</head>
+<body>
+  <h1>Memory Based Questions - Full Answer Sheet</h1>
+  
+  <!-- ================================================= -->
+  <!-- Case Study: WasteClassifier — CNN for Waste Recognition -->
+  <!-- ================================================= -->
+  <h2>1. WasteClassifier — Smart City Waste Recognition Using CNN</h2>
+  
+  <div class="question">Q1. What is the input size of Rehan’s WasteClassifier CNN model?</div>
+  <div class="answer">Answer: b) 128x128x3</div>
+  <div class="explanation">Explanation: The case study clearly states that the input is a 128x128 RGB image. An RGB image has three channels, hence 128x128x3.</div>
+  
+  <div class="question">Q2. How many output classes does the model predict?</div>
+  <div class="answer">Answer: b) 5</div>
+  <div class="explanation">Explanation: Rehan’s model classifies waste into five categories: Plastic, Metal, Organic, Glass, and Paper.</div>
+  
+  <div class="question">Q3. What is the purpose of using filters in the Conv Layer?</div>
+  <div class="answer">Answer: b) Extracting features like edges, patterns</div>
+  <div class="explanation">Explanation: Convolution filters are designed to learn and extract features from the image (such as edges, textures, and patterns), which is critical for image recognition tasks.</div>
+  
+  <div class="question">Q4. Calculate the number of parameters in the first Conv Layer with 32 filters of size 3x3x3.</div>
+  <div class="answer">Answer: c) 896</div>
+  <div class="explanation">
+    Explanation: Each filter is of size 3x3x3 (i.e. 27 parameters) and has one bias term, totaling 28 parameters per filter. Multiply by 32 filters:<br>
+    28 x 32 = 896.
+  </div>
+  
+  <div class="question">Q5. Which activation function did Rehan use in hidden layers?</div>
+  <div class="answer">Answer: b) ReLU</div>
+  <div class="explanation">Explanation: The case study specifies that ReLU (Rectified Linear Unit) was used as the activation function in the hidden layers, introducing non-linearity into the model.</div>
+  
+  <div class="question">Q6. The purpose of the Flatten Layer is:</div>
+  <div class="answer">Answer: b) Convert 2D output to 1D vector</div>
+  <div class="explanation">
+    Explanation: A Flatten layer converts the 2-dimensional feature maps into a single one-dimensional vector, enabling it to be fed into fully connected layers.
+  </div>
+  
+  <div class="question">Q7. If Rehan’s model performs well on training data but poorly on test data, it is called:</div>
+  <div class="answer">Answer: b) Overfitting</div>
+  <div class="explanation">
+    Explanation: Overfitting occurs when the model learns the training data too well (including noise and outliers) but does not generalize to new, unseen data.
+  </div>
+  
+  <div class="question">Q8. What technique did Rehan use to handle this problem?</div>
+  <div class="answer">Answer: a) Data Augmentation</div>
+  <div class="explanation">Explanation: To reduce overfitting, Rehan used data augmentation (and also transfer learning, as mentioned) to improve the model's performance on unseen data.</div>
+  
+  <div class="question">Q9. Which layer of the CNN model uses Softmax Activation?</div>
+  <div class="answer">Answer: c) Last Layer</div>
+  <div class="explanation">Explanation: Softmax is typically used in the final layer of a classification network to output the probability distribution over the target classes.</div>
+  
+  <div class="question">Q10. CNN models are best suited for:</div>
+  <div class="answer">Answer: b) Image Data</div>
+  <div class="explanation">Explanation: Convolutional Neural Networks (CNNs) are specifically designed for processing data that has a grid-like structure, such as images.</div>
+  
+  <!-- ================================================= -->
+  <!-- Case Study: DroneNav — Smart Drone Navigation using Matrices & Vectors -->
+  <!-- ================================================= -->
+  <h2>2. DroneNav — Smart Drone Navigation using Matrices & Vectors</h2>
+  
+  <!-- Multiple Select Questions -->
+  <div class="question">MSQ Q1. Which of the following are properties of Rotation Matrices?</div>
+  <div class="answer">Answer: a) Determinant is 1; b) Orthogonal matrix</div>
+  <div class="explanation">Explanation: Rotation matrices are orthogonal (their transpose equals their inverse) and have a determinant equal to 1.</div>
+  
+  <div class="question">MSQ Q2. In drone navigation, translation vector is used for:</div>
+  <div class="answer">Answer: b) Moving to new coordinates</div>
+  <div class="explanation">Explanation: A translation vector is used to shift the position of an object, effectively moving it from one coordinate to another.</div>
+  
+  <div class="question">MSQ Q3. Eigenvalues of a matrix help in:</div>
+  <div class="answer">Answer: a) Detecting instability</div>
+  <div class="explanation">Explanation: In drone navigation, eigenvalues are computed to analyze stability (for example, detecting instability due to wind disturbances).</div>
+  
+  <div class="question">MSQ Q4. Which of the following matrices are Scaling Matrices?</div>
+  <div class="answer">Answer: a) [2, 0; 0, 3] and c) [k, 0; 0, k]</div>
+  <div class="explanation">Explanation: Diagonal matrices with scaling factors on the diagonal serve as scaling matrices. Option b represents a rotation matrix and option d does not scale uniformly.</div>
+  
+  <div class="question">MSQ Q5. Which operations involve matrices in drone movement?</div>
+  <div class="answer">Answer: a) Rotation; b) Translation; c) Speed Control</div>
+  <div class="explanation">Explanation: Drone movement involves applying rotation matrices to change direction, translation vectors to update position, and scaling matrices (for speed adjustment) to control speed.</div>
+  
+  <!-- Numerical Type Questions -->
+  <div class="question">Q6. Rotate point (3, 2) by 90 degrees anti-clockwise using the rotation matrix. Give new coordinates.</div>
+  <div class="answer">Answer: (-2, 3)</div>
+  <div class="explanation">
+    Explanation: The 90-degree anti-clockwise rotation matrix is: [0, -1; 1, 0].<br>
+    Multiplying this matrix by the vector [3, 2] gives:<br>
+    [0*3 + (-1)*2, 1*3 + 0*2] = (-2, 3).
+  </div>
+  
+  <div class="question">Q7. Multiply matrix A = [1, 2; 3, 4] with vector v = [2; 1] and give the result.</div>
+  <div class="answer">Answer: [4, 10]</div>
+  <div class="explanation">
+    Explanation: Multiply each row of A with the vector v:<br>
+    Row 1: (1*2 + 2*1) = 4;<br>
+    Row 2: (3*2 + 4*1) = 10.
+  </div>
+  
+  <div class="question">Q8. Find determinant of matrix B = [4, 2; 7, 6].</div>
+  <div class="answer">Answer: 10</div>
+  <div class="explanation">
+    Explanation: Determinant = (4 x 6) - (2 x 7) = 24 - 14 = 10.
+  </div>
+  
+  <div class="question">Q9. Find the Eigenvalues of the matrix C = [3, 0; 0, 5].</div>
+  <div class="answer">Answer: 3 and 5</div>
+  <div class="explanation">
+    Explanation: For a diagonal matrix, the eigenvalues are simply the diagonal entries.
+  </div>
+  
+  <div class="question">Q10. If a drone wants to scale its speed in X by 2 and Y by 3, what will be the scaling matrix?</div>
+  <div class="answer">Answer: [2, 0; 0, 3]</div>
+  <div class="explanation">
+    Explanation: A scaling matrix in 2D is represented as a diagonal matrix with the scaling factors on the diagonal.
+  </div>
+  
+  <div class="question">Bonus Q11. Given the matrix D = [4, 0; 0, 9]: Calculate the product of:
+    <ol class="numerical">
+      <li>Determinant of its eigenvectors matrix (assumed identity matrix, so determinant = 1).</li>
+      <li>Product of its eigenvalues (4 x 9 = 36).</li>
+    </ol>
+  </div>
+  <div class="answer">Answer: 36</div>
+  <div class="explanation">
+    Explanation: With the eigenvector matrix assumed to be the identity (determinant 1), the final product is 1 x 36 = 36.
+  </div>
+  
+  <!-- ================================================= -->
+  <!-- Case Study: MedScan AI — Smart Disease Detection using SVM & KNN -->
+  <!-- ================================================= -->
+  <h2>3. MedScan AI — Smart Disease Detection using SVM & KNN</h2>
+  
+  <!-- MCQs (Single Correct Answer) -->
+  <div class="question">Q1. Support Vectors in SVM primarily influence:</div>
+  <div class="answer">Answer: B) The position of the decision boundary</div>
+  <div class="explanation">
+    Explanation: Support vectors determine the margin and hence the precise location of the decision boundary.
+  </div>
+  
+  <div class="question">Q2. If the value of K in KNN is very large (close to total data points), the model will mostly:</div>
+  <div class="answer">Answer: B) Predict majority class always</div>
+  <div class="explanation">
+    Explanation: With a very large K, the classifier averages nearly all training examples, resulting in the majority class prediction.
+  </div>
+  
+  <div class="question">Q3. Which of the following would make SVM with RBF kernel perform poorly?</div>
+  <div class="answer">Answer: A) Feature scaling not applied</div>
+  <div class="explanation">
+    Explanation: SVM with an RBF kernel is sensitive to feature scaling, so lack of scaling can significantly deteriorate performance.
+  </div>
+  
+  <div class="question">Q4. KNN will fail to perform well if:</div>
+  <div class="answer">Answer: D) All of the above</div>
+  <div class="explanation">
+    Explanation: Poor distance metric choice, high-dimensional data, and unnormalized features all negatively affect KNN performance.
+  </div>
+  
+  <div class="question">Q5. If SVM finds that 80% of training points are support vectors, it means:</div>
+  <div class="answer">Answer: B) Model is likely overfitting</div>
+  <div class="explanation">
+    Explanation: A very high percentage of support vectors indicates that the SVM is overly reliant on the training data, suggesting overfitting.
+  </div>
+  
+  <!-- MSQs (Multiple Select Questions) -->
+  <div class="question">MSQ Q6. Increasing the C parameter in SVM will:</div>
+  <div class="answer">Answer: A) Decrease margin width; C) Increase model complexity; D) Make model prone to overfitting</div>
+  <div class="explanation">
+    Explanation: A higher C parameter penalizes misclassifications more, leading to a narrower margin and increased complexity, thereby increasing the risk of overfitting.
+  </div>
+  
+  <div class="question">MSQ Q7. Choosing a very small value of K in KNN will lead to:</div>
+  <div class="answer">Answer: B) High Variance; C) Model sensitivity to noise</div>
+  <div class="explanation">
+    Explanation: A very small K causes the model to react to small fluctuations or noise in the data, increasing its variance.
+  </div>
+  
+  <div class="question">MSQ Q8. SVM is preferred over KNN when:</div>
+  <div class="answer">Answer: A) Speed at prediction time is critical; B) Memory usage is a concern; C) Feature space is sparse and high-dimensional</div>
+  <div class="explanation">
+    Explanation: SVMs require storing only the support vectors and perform faster predictions compared to KNN, which must compute distances with all data points.
+  </div>
+  
+  <div class="question">MSQ Q9. Which factors affect KNN performance?</div>
+  <div class="answer">Answer: A) Feature scaling; B) Curse of Dimensionality; C) Distance Metric</div>
+  <div class="explanation">
+    Explanation: KNN is influenced by the scale of data, suffers in high dimensions (curse of dimensionality), and depends on the chosen distance metric.
+  </div>
+  
+  <div class="question">MSQ Q10. In SVM, the role of the kernel trick is to:</div>
+  <div class="answer">Answer: B) Transform non-linear data to a higher dimension; D) Avoid explicit computation of new features</div>
+  <div class="explanation">
+    Explanation: The kernel trick implicitly maps data to a higher-dimensional space without computing the transformation explicitly, facilitating linear separation in that space.
+  </div>
+  
+  <!-- ================================================= -->
+  <!-- Case Study: Smart Traffic Signal System using Markov Chains -->
+  <!-- ================================================= -->
+  <h2>4. Smart Traffic Signal System using Markov Chains</h2>
+  
+  <!-- MCQs (Conceptual) -->
+  <div class="question">Q1. A Markov Chain is called memoryless because:</div>
+  <div class="answer">Answer: B) Transition depends only on the current state</div>
+  <div class="explanation">
+    Explanation: The Markov property states that the future state depends only on the current state and not on the sequence of events that preceded it.
+  </div>
+  
+  <div class="question">Q2. In the given scenario, the stationary distribution represents:</div>
+  <div class="answer">Answer: C) The long-term probability of being in each signal state</div>
+  <div class="explanation">
+    Explanation: The stationary distribution describes the steady-state probabilities for each state over time.
+  </div>
+  
+  <div class="question">Q3. The sum of probabilities in any row of the transition matrix must be:</div>
+  <div class="answer">Answer: B) 1</div>
+  <div class="explanation">
+    Explanation: Each row represents a probability distribution over the next states; therefore, the sum must equal 1.
+  </div>
+  
+  <div class="question">Q4. If state S4 has high stationary probability, it indicates:</div>
+  <div class="answer">Answer: B) Emergency occurs frequently</div>
+  <div class="explanation">
+    Explanation: A high stationary probability for S4 (emergency mode) implies that the system is often in the emergency state.
+  </div>
+  
+  <div class="question">Q5. Which of the following is true for a regular Markov Chain?</div>
+  <div class="answer">Answer: B) There exists a stationary distribution</div>
+  <div class="explanation">
+    Explanation: A regular Markov chain always converges to a unique stationary distribution.
+  </div>
+  
+  <!-- Numerical Type Questions -->
+  <div class="question">Q6. What is the probability of reaching S2 from S1 in exactly one step?</div>
+  <div class="answer">Answer: 0.7</div>
+  <div class="explanation">
+    Explanation: The transition probability from S1 to S2 is given as 0.7 in the transition matrix.
+  </div>
+  
+  <div class="question">Q7. What is the probability of being in S3 after 2 steps starting from S1?</div>
+  <div class="answer">Answer: 0.46</div>
+  <div class="explanation">
+    Explanation: By multiplying the transition probabilities along the possible two-step paths from S1 to S3, the total probability is computed to be 0.46.
+  </div>
+  
+  <div class="question">Q8. Calculate the sum of all stationary probabilities.</div>
+  <div class="answer">Answer: 1</div>
+  <div class="explanation">
+    Explanation: A stationary distribution is a probability distribution, so all its probabilities sum to 1.
+  </div>
+  
+  <div class="question">Q9. If the system stays in S3, calculate the expected number of steps before moving to any other state. (Hint: Expected steps = 1 / (1 - P(S3 -> S3)))</div>
+  <div class="answer">Answer: 1.25</div>
+  <div class="explanation">
+    Explanation: Given P(S3 -> S3) is 0.2, the expected number of steps is 1 / (1 - 0.2) = 1 / 0.8 = 1.25.
+  </div>
+  
+  <div class="question">Q10. If eigenvalue lambda = 1 corresponds to the stationary distribution, calculate the product of the determinant of P and the sum of all eigenvalues of P.</div>
+  <div class="answer">Answer: 0.0324</div>
+  <div class="explanation">
+    Explanation: The sum of the eigenvalues equals the trace (sum of the diagonal entries) of the transition matrix. With the computed determinant (approximately 0.036) and the trace (approximately 0.9), their product is 0.036 x 0.9 ≈ 0.0324.
+  </div>
+  
+  <!-- ================================================= -->
+  <!-- Case Study: PCA for Traffic Pattern Analysis in Smart City -->
+  <!-- ================================================= -->
+  <h2>5. PCA for Traffic Pattern Analysis in Smart City</h2>
+  
+  <div class="question">Q1. The primary objective of PCA is to:</div>
+  <div class="answer">Answer: c) Transform correlated features into uncorrelated components</div>
+  <div class="explanation">
+    Explanation: PCA reduces dimensionality by creating new independent (uncorrelated) components that capture most of the variance in the data.
+  </div>
+  
+  <div class="question">Q2. PCA can improve machine learning models by:</div>
+  <div class="answer">Answer: b) Reducing dimensionality and multicollinearity</div>
+  <div class="explanation">
+    Explanation: By reducing the number of features and removing redundancy, PCA can lead to simpler and more robust models.
+  </div>
+  
+  <div class="question">Q3. In PCA, the first principal component:</div>
+  <div class="answer">Answer: b) Explains maximum variance</div>
+  <div class="explanation">
+    Explanation: The first principal component captures the highest amount of variability present in the dataset.
+  </div>
+  
+  <div class="question">Q4. The main mathematical operation involved in PCA is:</div>
+  <div class="answer">Answer: c) Covariance Calculation</div>
+  <div class="explanation">
+    Explanation: PCA begins by calculating the covariance matrix of the data, followed by eigen decomposition to find the principal components.
+  </div>
+  
+  <div class="question">Q5. Which type of data is most suitable for PCA?</div>
+  <div class="answer">Answer: a) Data with highly correlated features</div>
+  <div class="explanation">
+    Explanation: PCA is most useful when the original features are correlated; it can then form uncorrelated principal components.
+  </div>
+  
+  <div class="question">MSQ Q6. Which of the following is true about principal components?</div>
+  <div class="answer">Answer: a) They are orthogonal; b) They are linear combinations of original features; d) They are dependent on original scaling of data</div>
+  <div class="explanation">
+    Explanation: Principal components are derived as linear combinations, are orthogonal (uncorrelated), and their values are affected by the scaling of the original features.
+  </div>
+  
+  <div class="question">Q7. PCA can lead to information loss if:</div>
+  <div class="answer">Answer: b) Too few components are retained</div>
+  <div class="explanation">
+    Explanation: Retaining too few components may discard significant variance present in the original data.
+  </div>
+  
+  <div class="question">Q8. PCA transforms data into a:</div>
+  <div class="answer">Answer: c) Lower dimensional uncorrelated space</div>
+  <div class="explanation">
+    Explanation: The objective of PCA is to reduce the data’s dimensionality while ensuring that the new features (principal components) are uncorrelated.
+  </div>
+  
+  <div class="question">Q9. PCA was applied on a traffic dataset with 50 features, and only 5 components were selected explaining 90% variance. What does this indicate?</div>
+  <div class="answer">Answer: b) Remaining 45 features add very little new information</div>
+  <div class="explanation">
+    Explanation: This result indicates that the majority of the information in the dataset is captured by just 5 components.
+  </div>
+  
+  <div class="question">MSQ Q10. Which of the following is essential before applying PCA?</div>
+  <div class="answer">Answer: a) Mean centering the data; b) Standardizing features</div>
+  <div class="explanation">
+    Explanation: Centering and standardizing the data ensure that each feature contributes equally to the PCA.
+  </div>
+  
+  <!-- ================================================= -->
+  <!-- Case Study: LibraryBot — The Smart Bookkeeper -->
+  <!-- ================================================= -->
+  <h2>6. LibraryBot — The Smart Bookkeeper</h2>
+  
+  <div class="question">Q1. Which file mode should be used to add a new book without deleting existing data?</div>
+  <div class="answer">Answer: c) 'a'</div>
+  <div class="explanation">
+    Explanation: The append mode ('a') adds new data at the end of the file without removing the existing content.
+  </div>
+  
+  <div class="question">Q2. Which method is suitable to search for a book in the file?</div>
+  <div class="answer">Answer: b) readlines()</div>
+  <div class="explanation">
+    Explanation: The readlines() method reads the file line by line into a list, making it easier to search for records.
+  </div>
+  
+  <div class="question">Q3. What data structure would speed up searching the book records in memory?</div>
+  <div class="answer">Answer: c) Dictionary</div>
+  <div class="explanation">
+    Explanation: A dictionary allows for fast, constant-time lookup using keys, which speeds up the search.
+  </div>
+  
+  <div class="question">Q4. What error occurs if LibraryBot tries to open a non-existing file in 'r' mode?</div>
+  <div class="answer">Answer: b) FileNotFoundError</div>
+  <div class="explanation">
+    Explanation: Attempting to open a file that doesn’t exist in read mode results in a FileNotFoundError.
+  </div>
+  
+  <div class="question">Q5. What is the correct method to update the status of a book in the text file?</div>
+  <div class="answer">Answer: b) Read all data, modify, and rewrite file</div>
+  <div class="explanation">
+    Explanation: To update a specific entry, you typically load the file into memory, update the record, and then write the entire content back.
+  </div>
+  
+  <div class="question">MSQ Q6. What are advantages of using a .txt file in LibraryBot?</div>
+  <div class="answer">Answer: a) Easy to use; b) Human-readable; d) No external library needed</div>
+  <div class="explanation">
+    Explanation: Text files are simple, human-readable, and do not require any extra libraries, though they are not optimal for very large datasets.
+  </div>
+  
+  <div class="question">Q7. Which string method removes newline characters (\\n) from each line read from the file?</div>
+  <div class="answer">Answer: a) strip()</div>
+  <div class="explanation">
+    Explanation: The strip() method removes leading and trailing whitespace including newline characters.
+  </div>
+  
+  <div class="question">Q8. What is the correct mode for both reading and writing without deleting the file content?</div>
+  <div class="answer">Answer: b) 'r+'</div>
+  <div class="explanation">
+    Explanation: The 'r+' mode opens the file for both reading and writing without truncating it.
+  </div>
+  
+  <div class="question">Q9. How should LibraryBot count the available books?</div>
+  <div class="answer">Answer: b) Count lines where Status is 'Available'</div>
+  <div class="explanation">
+    Explanation: By checking each line for the status "Available", LibraryBot can accurately count the number of available books.
+  </div>
+  
+  <div class="question">Q10. Which method in Python automatically closes the file after use?</div>
+  <div class="answer">Answer: b) with open(...) as f</div>
+  <div class="explanation">
+    Explanation: Using the 'with' statement ensures that the file is automatically closed after the block of code is executed.
+  </div>
+  
+  <!-- ================================================= -->
+  <!-- Case Study: Library Book Management System — Sorting Techniques -->
+  <!-- ================================================= -->
+  <h2>7. Library Book Management System — Optimizing Book Arrangement Using Sorting Techniques</h2>
+  
+  <!-- MCQs (Single Correct Answer) -->
+  <div class="question">Q1. Which of the following sorting algorithms is comparison-based?</div>
+  <div class="answer">Answer: b) Bubble Sort</div>
+  <div class="explanation">
+    Explanation: Bubble Sort is a classic comparison-based algorithm that repeatedly swaps adjacent elements if they are in the wrong order.
+  </div>
+  
+  <div class="question">Q2. Which sorting technique is considered the most efficient for sorting large datasets?</div>
+  <div class="answer">Answer: c) Merge Sort</div>
+  <div class="explanation">
+    Explanation: Merge Sort has an average and worst-case time complexity of O(n log n), making it efficient for large datasets.
+  </div>
+  
+  <div class="question">Q3. What is the worst-case time complexity of Quick Sort?</div>
+  <div class="answer">Answer: a) O(n²)</div>
+  <div class="explanation">
+    Explanation: Although Quick Sort often performs at O(n log n) on average, its worst-case occurs when the pivot selection is poor, resulting in O(n²) time.
+  </div>
+  
+  <div class="question">Q4. In which sorting algorithm does the largest element "bubble up" to the end in each pass?</div>
+  <div class="answer">Answer: c) Bubble Sort</div>
+  <div class="explanation">
+    Explanation: The term “bubble up” comes directly from Bubble Sort, where the largest element in the unsorted part of the list moves to its correct position in each pass.
+  </div>
+  
+  <div class="question">Q5. Which sorting algorithm uses a "Divide and Conquer" approach?</div>
+  <div class="answer">Answer: b) Merge Sort</div>
+  <div class="explanation">
+    Explanation: Merge Sort divides the dataset into halves, recursively sorts each half, and then merges the sorted halves.
+  </div>
+  
+  <!-- MSQs (Multiple Correct Answers) -->
+  <div class="question">MSQ Q6. Sorting is useful in LMS for:</div>
+  <div class="answer">Answer: a) Fast searching of books; b) Displaying books in an ordered manner</div>
+  <div class="explanation">
+    Explanation: Sorting the books allows for quicker searches and a more organized display, enhancing user experience.
+  </div>
+  
+  <div class="question">MSQ Q7. Stable Sorting Algorithms preserve:</div>
+  <div class="answer">Answer: a) Original Order of Equal Elements</div>
+  <div class="explanation">
+    Explanation: Stability in sorting ensures that if two elements are equal, their original order is maintained.
+  </div>
+  
+  <div class="question">MSQ Q8. Which sorting algorithms are In-Place?</div>
+  <div class="answer">Answer: a) Bubble Sort; c) Insertion Sort; d) Quick Sort</div>
+  <div class="explanation">
+    Explanation: These algorithms sort the list within the original data structure without significant additional space requirements.
+  </div>
+  
+  <div class="question">MSQ Q9. In which situations is Insertion Sort efficient?</div>
+  <div class="answer">Answer: a) Small Dataset; b) Nearly Sorted Data; d) Already Sorted Data</div>
+  <div class="explanation">
+    Explanation: Insertion Sort has low overhead and performs very well on small or nearly sorted datasets.
+  </div>
+  
+  <div class="question">Q10. Merge Sort is preferred over Bubble Sort because:</div>
+  <div class="answer">Answer: a) Faster on large data; c) Divide and Conquer strategy</div>
+  <div class="explanation">
+    Explanation: Merge Sort is significantly faster than Bubble Sort (O(n log n) vs. O(n²)) and uses a divide and conquer approach.
+  </div>
+  
+  <!-- Scenario-Based Questions -->
+  <div class="question">Scenario 1: Library wants to sort a small list of newly arrived books (less than 20 books). Suitable Algorithm:</div>
+  <div class="answer">Answer: Insertion Sort</div>
+  <div class="explanation">
+    Explanation: Insertion Sort is highly efficient for small datasets due to its simplicity and low overhead.
+  </div>
+  
+  <div class="question">Scenario 2: Library needs to sort a very large dataset of books (more than 10,000 books) based on Book Titles. Suitable Algorithm:</div>
+  <div class="answer">Answer: Merge Sort</div>
+  <div class="explanation">
+    Explanation: Merge Sort’s O(n log n) time complexity makes it ideal for handling large datasets efficiently.
+  </div>
+  
+  <div class="question">Scenario 3: Library wants to sort books where the data is already nearly sorted. Suitable Algorithm:</div>
+  <div class="answer">Answer: Insertion Sort</div>
+  <div class="explanation">
+    Explanation: Insertion Sort works very efficiently on nearly sorted data as it requires minimal adjustments.
+  </div>
+  
+  <div class="question">Scenario 4: Library wants stable sorting where the order of equal elements should not change. Suitable Algorithm:</div>
+  <div class="answer">Answer: Merge Sort</div>
+  <div class="explanation">
+    Explanation: Merge Sort is a stable sorting algorithm that preserves the relative order of equivalent elements.
+  </div>
+  
+  <div class="question">Scenario 5: Library wants best average-case performance for sorting large books data. Suitable Algorithm:</div>
+  <div class="answer">Answer: Quick Sort</div>
+  <div class="explanation">
+    Explanation: Quick Sort generally offers excellent average-case performance, making it suitable for large datasets when well-implemented.
+  </div>
+  
+  <p>If you need further clarifications or additional formatting modifications, feel free to ask!</p>
+  
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Memory Based Questions - Full Answer Sheet</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; }
+    h1, h2 { color: #2c3e50; }
+    h2 { border-bottom: 2px solid #2c3e50; padding-bottom: 4px; margin-top: 30px; }
+    .question { margin-bottom: 5px; font-weight: bold; }
+    .answer { color: #27ae60; font-weight: bold; }
+    .explanation { color: #7f8c8d; margin-bottom: 15px; }
+    .msq, .numerical { margin-left: 20px; }
+    .scenario { margin-left: 20px; font-style: italic; }
+  </style>
+</head>
+<body>
+  <h1>Memory Based Questions - Full Answer Sheet</h1>
+  
+  <!-- ================================================= -->
+  <!-- Case Study: WasteClassifier — CNN for Waste Recognition -->
+  <!-- ================================================= -->
+  <h2>1. WasteClassifier — Smart City Waste Recognition Using CNN</h2>
+  
+  <div class="question">Q1. What is the input size of Rehan’s WasteClassifier CNN model?</div>
+  <div class="answer">Answer: b) 128x128x3</div>
+  <div class="explanation">Explanation: The case study clearly states that the input is a 128x128 RGB image. An RGB image has three channels, hence 128x128x3.</div>
+  
+  <div class="question">Q2. How many output classes does the model predict?</div>
+  <div class="answer">Answer: b) 5</div>
+  <div class="explanation">Explanation: Rehan’s model classifies waste into five categories: Plastic, Metal, Organic, Glass, and Paper.</div>
+  
+  <div class="question">Q3. What is the purpose of using filters in the Conv Layer?</div>
+  <div class="answer">Answer: b) Extracting features like edges, patterns</div>
+  <div class="explanation">Explanation: Convolution filters are designed to learn and extract features from the image (such as edges, textures, and patterns), which is critical for image recognition tasks.</div>
+  
+  <div class="question">Q4. Calculate the number of parameters in the first Conv Layer with 32 filters of size 3x3x3.</div>
+  <div class="answer">Answer: c) 896</div>
+  <div class="explanation">
+    Explanation: Each filter is of size 3x3x3 (i.e. 27 parameters) and has one bias term, totaling 28 parameters per filter. Multiply by 32 filters:<br>
+    28 x 32 = 896.
+  </div>
+  
+  <div class="question">Q5. Which activation function did Rehan use in hidden layers?</div>
+  <div class="answer">Answer: b) ReLU</div>
+  <div class="explanation">Explanation: The case study specifies that ReLU (Rectified Linear Unit) was used as the activation function in the hidden layers, introducing non-linearity into the model.</div>
+  
+  <div class="question">Q6. The purpose of the Flatten Layer is:</div>
+  <div class="answer">Answer: b) Convert 2D output to 1D vector</div>
+  <div class="explanation">
+    Explanation: A Flatten layer converts the 2-dimensional feature maps into a single one-dimensional vector, enabling it to be fed into fully connected layers.
+  </div>
+  
+  <div class="question">Q7. If Rehan’s model performs well on training data but poorly on test data, it is called:</div>
+  <div class="answer">Answer: b) Overfitting</div>
+  <div class="explanation">
+    Explanation: Overfitting occurs when the model learns the training data too well (including noise and outliers) but does not generalize to new, unseen data.
+  </div>
+  
+  <div class="question">Q8. What technique did Rehan use to handle this problem?</div>
+  <div class="answer">Answer: a) Data Augmentation</div>
+  <div class="explanation">Explanation: To reduce overfitting, Rehan used data augmentation (and also transfer learning, as mentioned) to improve the model's performance on unseen data.</div>
+  
+  <div class="question">Q9. Which layer of the CNN model uses Softmax Activation?</div>
+  <div class="answer">Answer: c) Last Layer</div>
+  <div class="explanation">Explanation: Softmax is typically used in the final layer of a classification network to output the probability distribution over the target classes.</div>
+  
+  <div class="question">Q10. CNN models are best suited for:</div>
+  <div class="answer">Answer: b) Image Data</div>
+  <div class="explanation">Explanation: Convolutional Neural Networks (CNNs) are specifically designed for processing data that has a grid-like structure, such as images.</div>
+  
+  <!-- ================================================= -->
+  <!-- Case Study: DroneNav — Smart Drone Navigation using Matrices & Vectors -->
+  <!-- ================================================= -->
+  <h2>2. DroneNav — Smart Drone Navigation using Matrices & Vectors</h2>
+  
+  <!-- Multiple Select Questions -->
+  <div class="question">MSQ Q1. Which of the following are properties of Rotation Matrices?</div>
+  <div class="answer">Answer: a) Determinant is 1; b) Orthogonal matrix</div>
+  <div class="explanation">Explanation: Rotation matrices are orthogonal (their transpose equals their inverse) and have a determinant equal to 1.</div>
+  
+  <div class="question">MSQ Q2. In drone navigation, translation vector is used for:</div>
+  <div class="answer">Answer: b) Moving to new coordinates</div>
+  <div class="explanation">Explanation: A translation vector is used to shift the position of an object, effectively moving it from one coordinate to another.</div>
+  
+  <div class="question">MSQ Q3. Eigenvalues of a matrix help in:</div>
+  <div class="answer">Answer: a) Detecting instability</div>
+  <div class="explanation">Explanation: In drone navigation, eigenvalues are computed to analyze stability (for example, detecting instability due to wind disturbances).</div>
+  
+  <div class="question">MSQ Q4. Which of the following matrices are Scaling Matrices?</div>
+  <div class="answer">Answer: a) [2, 0; 0, 3] and c) [k, 0; 0, k]</div>
+  <div class="explanation">Explanation: Diagonal matrices with scaling factors on the diagonal serve as scaling matrices. Option b represents a rotation matrix and option d does not scale uniformly.</div>
+  
+  <div class="question">MSQ Q5. Which operations involve matrices in drone movement?</div>
+  <div class="answer">Answer: a) Rotation; b) Translation; c) Speed Control</div>
+  <div class="explanation">Explanation: Drone movement involves applying rotation matrices to change direction, translation vectors to update position, and scaling matrices (for speed adjustment) to control speed.</div>
+  
+  <!-- Numerical Type Questions -->
+  <div class="question">Q6. Rotate point (3, 2) by 90 degrees anti-clockwise using the rotation matrix. Give new coordinates.</div>
+  <div class="answer">Answer: (-2, 3)</div>
+  <div class="explanation">
+    Explanation: The 90-degree anti-clockwise rotation matrix is: [0, -1; 1, 0].<br>
+    Multiplying this matrix by the vector [3, 2] gives:<br>
+    [0*3 + (-1)*2, 1*3 + 0*2] = (-2, 3).
+  </div>
+  
+  <div class="question">Q7. Multiply matrix A = [1, 2; 3, 4] with vector v = [2; 1] and give the result.</div>
+  <div class="answer">Answer: [4, 10]</div>
+  <div class="explanation">
+    Explanation: Multiply each row of A with the vector v:<br>
+    Row 1: (1*2 + 2*1) = 4;<br>
+    Row 2: (3*2 + 4*1) = 10.
+  </div>
+  
+  <div class="question">Q8. Find determinant of matrix B = [4, 2; 7, 6].</div>
+  <div class="answer">Answer: 10</div>
+  <div class="explanation">
+    Explanation: Determinant = (4 x 6) - (2 x 7) = 24 - 14 = 10.
+  </div>
+  
+  <div class="question">Q9. Find the Eigenvalues of the matrix C = [3, 0; 0, 5].</div>
+  <div class="answer">Answer: 3 and 5</div>
+  <div class="explanation">
+    Explanation: For a diagonal matrix, the eigenvalues are simply the diagonal entries.
+  </div>
+  
+  <div class="question">Q10. If a drone wants to scale its speed in X by 2 and Y by 3, what will be the scaling matrix?</div>
+  <div class="answer">Answer: [2, 0; 0, 3]</div>
+  <div class="explanation">
+    Explanation: A scaling matrix in 2D is represented as a diagonal matrix with the scaling factors on the diagonal.
+  </div>
+  
+  <div class="question">Bonus Q11. Given the matrix D = [4, 0; 0, 9]: Calculate the product of:
+    <ol class="numerical">
+      <li>Determinant of its eigenvectors matrix (assumed identity matrix, so determinant = 1).</li>
+      <li>Product of its eigenvalues (4 x 9 = 36).</li>
+    </ol>
+  </div>
+  <div class="answer">Answer: 36</div>
+  <div class="explanation">
+    Explanation: With the eigenvector matrix assumed to be the identity (determinant 1), the final product is 1 x 36 = 36.
+  </div>
+  
+  <!-- ================================================= -->
+  <!-- Case Study: MedScan AI — Smart Disease Detection using SVM & KNN -->
+  <!-- ================================================= -->
+  <h2>3. MedScan AI — Smart Disease Detection using SVM & KNN</h2>
+  
+  <!-- MCQs (Single Correct Answer) -->
+  <div class="question">Q1. Support Vectors in SVM primarily influence:</div>
+  <div class="answer">Answer: B) The position of the decision boundary</div>
+  <div class="explanation">
+    Explanation: Support vectors determine the margin and hence the precise location of the decision boundary.
+  </div>
+  
+  <div class="question">Q2. If the value of K in KNN is very large (close to total data points), the model will mostly:</div>
+  <div class="answer">Answer: B) Predict majority class always</div>
+  <div class="explanation">
+    Explanation: With a very large K, the classifier averages nearly all training examples, resulting in the majority class prediction.
+  </div>
+  
+  <div class="question">Q3. Which of the following would make SVM with RBF kernel perform poorly?</div>
+  <div class="answer">Answer: A) Feature scaling not applied</div>
+  <div class="explanation">
+    Explanation: SVM with an RBF kernel is sensitive to feature scaling, so lack of scaling can significantly deteriorate performance.
+  </div>
+  
+  <div class="question">Q4. KNN will fail to perform well if:</div>
+  <div class="answer">Answer: D) All of the above</div>
+  <div class="explanation">
+    Explanation: Poor distance metric choice, high-dimensional data, and unnormalized features all negatively affect KNN performance.
+  </div>
+  
+  <div class="question">Q5. If SVM finds that 80% of training points are support vectors, it means:</div>
+  <div class="answer">Answer: B) Model is likely overfitting</div>
+  <div class="explanation">
+    Explanation: A very high percentage of support vectors indicates that the SVM is overly reliant on the training data, suggesting overfitting.
+  </div>
+  
+  <!-- MSQs (Multiple Select Questions) -->
+  <div class="question">MSQ Q6. Increasing the C parameter in SVM will:</div>
+  <div class="answer">Answer: A) Decrease margin width; C) Increase model complexity; D) Make model prone to overfitting</div>
+  <div class="explanation">
+    Explanation: A higher C parameter penalizes misclassifications more, leading to a narrower margin and increased complexity, thereby increasing the risk of overfitting.
+  </div>
+  
+  <div class="question">MSQ Q7. Choosing a very small value of K in KNN will lead to:</div>
+  <div class="answer">Answer: B) High Variance; C) Model sensitivity to noise</div>
+  <div class="explanation">
+    Explanation: A very small K causes the model to react to small fluctuations or noise in the data, increasing its variance.
+  </div>
+  
+  <div class="question">MSQ Q8. SVM is preferred over KNN when:</div>
+  <div class="answer">Answer: A) Speed at prediction time is critical; B) Memory usage is a concern; C) Feature space is sparse and high-dimensional</div>
+  <div class="explanation">
+    Explanation: SVMs require storing only the support vectors and perform faster predictions compared to KNN, which must compute distances with all data points.
+  </div>
+  
+  <div class="question">MSQ Q9. Which factors affect KNN performance?</div>
+  <div class="answer">Answer: A) Feature scaling; B) Curse of Dimensionality; C) Distance Metric</div>
+  <div class="explanation">
+    Explanation: KNN is influenced by the scale of data, suffers in high dimensions (curse of dimensionality), and depends on the chosen distance metric.
+  </div>
+  
+  <div class="question">MSQ Q10. In SVM, the role of the kernel trick is to:</div>
+  <div class="answer">Answer: B) Transform non-linear data to a higher dimension; D) Avoid explicit computation of new features</div>
+  <div class="explanation">
+    Explanation: The kernel trick implicitly maps data to a higher-dimensional space without computing the transformation explicitly, facilitating linear separation in that space.
+  </div>
+  
+  <!-- ================================================= -->
+  <!-- Case Study: Smart Traffic Signal System using Markov Chains -->
+  <!-- ================================================= -->
+  <h2>4. Smart Traffic Signal System using Markov Chains</h2>
+  
+  <!-- MCQs (Conceptual) -->
+  <div class="question">Q1. A Markov Chain is called memoryless because:</div>
+  <div class="answer">Answer: B) Transition depends only on the current state</div>
+  <div class="explanation">
+    Explanation: The Markov property states that the future state depends only on the current state and not on the sequence of events that preceded it.
+  </div>
+  
+  <div class="question">Q2. In the given scenario, the stationary distribution represents:</div>
+  <div class="answer">Answer: C) The long-term probability of being in each signal state</div>
+  <div class="explanation">
+    Explanation: The stationary distribution describes the steady-state probabilities for each state over time.
+  </div>
+  
+  <div class="question">Q3. The sum of probabilities in any row of the transition matrix must be:</div>
+  <div class="answer">Answer: B) 1</div>
+  <div class="explanation">
+    Explanation: Each row represents a probability distribution over the next states; therefore, the sum must equal 1.
+  </div>
+  
+  <div class="question">Q4. If state S4 has high stationary probability, it indicates:</div>
+  <div class="answer">Answer: B) Emergency occurs frequently</div>
+  <div class="explanation">
+    Explanation: A high stationary probability for S4 (emergency mode) implies that the system is often in the emergency state.
+  </div>
+  
+  <div class="question">Q5. Which of the following is true for a regular Markov Chain?</div>
+  <div class="answer">Answer: B) There exists a stationary distribution</div>
+  <div class="explanation">
+    Explanation: A regular Markov chain always converges to a unique stationary distribution.
+  </div>
+  
+  <!-- Numerical Type Questions -->
+  <div class="question">Q6. What is the probability of reaching S2 from S1 in exactly one step?</div>
+  <div class="answer">Answer: 0.7</div>
+  <div class="explanation">
+    Explanation: The transition probability from S1 to S2 is given as 0.7 in the transition matrix.
+  </div>
+  
+  <div class="question">Q7. What is the probability of being in S3 after 2 steps starting from S1?</div>
+  <div class="answer">Answer: 0.46</div>
+  <div class="explanation">
+    Explanation: By multiplying the transition probabilities along the possible two-step paths from S1 to S3, the total probability is computed to be 0.46.
+  </div>
+  
+  <div class="question">Q8. Calculate the sum of all stationary probabilities.</div>
+  <div class="answer">Answer: 1</div>
+  <div class="explanation">
+    Explanation: A stationary distribution is a probability distribution, so all its probabilities sum to 1.
+  </div>
+  
+  <div class="question">Q9. If the system stays in S3, calculate the expected number of steps before moving to any other state. (Hint: Expected steps = 1 / (1 - P(S3 -> S3)))</div>
+  <div class="answer">Answer: 1.25</div>
+  <div class="explanation">
+    Explanation: Given P(S3 -> S3) is 0.2, the expected number of steps is 1 / (1 - 0.2) = 1 / 0.8 = 1.25.
+  </div>
+  
+  <div class="question">Q10. If eigenvalue lambda = 1 corresponds to the stationary distribution, calculate the product of the determinant of P and the sum of all eigenvalues of P.</div>
+  <div class="answer">Answer: 0.0324</div>
+  <div class="explanation">
+    Explanation: The sum of the eigenvalues equals the trace (sum of the diagonal entries) of the transition matrix. With the computed determinant (approximately 0.036) and the trace (approximately 0.9), their product is 0.036 x 0.9 ≈ 0.0324.
+  </div>
+  
+  <!-- ================================================= -->
+  <!-- Case Study: PCA for Traffic Pattern Analysis in Smart City -->
+  <!-- ================================================= -->
+  <h2>5. PCA for Traffic Pattern Analysis in Smart City</h2>
+  
+  <div class="question">Q1. The primary objective of PCA is to:</div>
+  <div class="answer">Answer: c) Transform correlated features into uncorrelated components</div>
+  <div class="explanation">
+    Explanation: PCA reduces dimensionality by creating new independent (uncorrelated) components that capture most of the variance in the data.
+  </div>
+  
+  <div class="question">Q2. PCA can improve machine learning models by:</div>
+  <div class="answer">Answer: b) Reducing dimensionality and multicollinearity</div>
+  <div class="explanation">
+    Explanation: By reducing the number of features and removing redundancy, PCA can lead to simpler and more robust models.
+  </div>
+  
+  <div class="question">Q3. In PCA, the first principal component:</div>
+  <div class="answer">Answer: b) Explains maximum variance</div>
+  <div class="explanation">
+    Explanation: The first principal component captures the highest amount of variability present in the dataset.
+  </div>
+  
+  <div class="question">Q4. The main mathematical operation involved in PCA is:</div>
+  <div class="answer">Answer: c) Covariance Calculation</div>
+  <div class="explanation">
+    Explanation: PCA begins by calculating the covariance matrix of the data, followed by eigen decomposition to find the principal components.
+  </div>
+  
+  <div class="question">Q5. Which type of data is most suitable for PCA?</div>
+  <div class="answer">Answer: a) Data with highly correlated features</div>
+  <div class="explanation">
+    Explanation: PCA is most useful when the original features are correlated; it can then form uncorrelated principal components.
+  </div>
+  
+  <div class="question">MSQ Q6. Which of the following is true about principal components?</div>
+  <div class="answer">Answer: a) They are orthogonal; b) They are linear combinations of original features; d) They are dependent on original scaling of data</div>
+  <div class="explanation">
+    Explanation: Principal components are derived as linear combinations, are orthogonal (uncorrelated), and their values are affected by the scaling of the original features.
+  </div>
+  
+  <div class="question">Q7. PCA can lead to information loss if:</div>
+  <div class="answer">Answer: b) Too few components are retained</div>
+  <div class="explanation">
+    Explanation: Retaining too few components may discard significant variance present in the original data.
+  </div>
+  
+  <div class="question">Q8. PCA transforms data into a:</div>
+  <div class="answer">Answer: c) Lower dimensional uncorrelated space</div>
+  <div class="explanation">
+    Explanation: The objective of PCA is to reduce the data’s dimensionality while ensuring that the new features (principal components) are uncorrelated.
+  </div>
+  
+  <div class="question">Q9. PCA was applied on a traffic dataset with 50 features, and only 5 components were selected explaining 90% variance. What does this indicate?</div>
+  <div class="answer">Answer: b) Remaining 45 features add very little new information</div>
+  <div class="explanation">
+    Explanation: This result indicates that the majority of the information in the dataset is captured by just 5 components.
+  </div>
+  
+  <div class="question">MSQ Q10. Which of the following is essential before applying PCA?</div>
+  <div class="answer">Answer: a) Mean centering the data; b) Standardizing features</div>
+  <div class="explanation">
+    Explanation: Centering and standardizing the data ensure that each feature contributes equally to the PCA.
+  </div>
+  
+  <!-- ================================================= -->
+  <!-- Case Study: LibraryBot — The Smart Bookkeeper -->
+  <!-- ================================================= -->
+  <h2>6. LibraryBot — The Smart Bookkeeper</h2>
+  
+  <div class="question">Q1. Which file mode should be used to add a new book without deleting existing data?</div>
+  <div class="answer">Answer: c) 'a'</div>
+  <div class="explanation">
+    Explanation: The append mode ('a') adds new data at the end of the file without removing the existing content.
+  </div>
+  
+  <div class="question">Q2. Which method is suitable to search for a book in the file?</div>
+  <div class="answer">Answer: b) readlines()</div>
+  <div class="explanation">
+    Explanation: The readlines() method reads the file line by line into a list, making it easier to search for records.
+  </div>
+  
+  <div class="question">Q3. What data structure would speed up searching the book records in memory?</div>
+  <div class="answer">Answer: c) Dictionary</div>
+  <div class="explanation">
+    Explanation: A dictionary allows for fast, constant-time lookup using keys, which speeds up the search.
+  </div>
+  
+  <div class="question">Q4. What error occurs if LibraryBot tries to open a non-existing file in 'r' mode?</div>
+  <div class="answer">Answer: b) FileNotFoundError</div>
+  <div class="explanation">
+    Explanation: Attempting to open a file that doesn’t exist in read mode results in a FileNotFoundError.
+  </div>
+  
+  <div class="question">Q5. What is the correct method to update the status of a book in the text file?</div>
+  <div class="answer">Answer: b) Read all data, modify, and rewrite file</div>
+  <div class="explanation">
+    Explanation: To update a specific entry, you typically load the file into memory, update the record, and then write the entire content back.
+  </div>
+  
+  <div class="question">MSQ Q6. What are advantages of using a .txt file in LibraryBot?</div>
+  <div class="answer">Answer: a) Easy to use; b) Human-readable; d) No external library needed</div>
+  <div class="explanation">
+    Explanation: Text files are simple, human-readable, and do not require any extra libraries, though they are not optimal for very large datasets.
+  </div>
+  
+  <div class="question">Q7. Which string method removes newline characters (\\n) from each line read from the file?</div>
+  <div class="answer">Answer: a) strip()</div>
+  <div class="explanation">
+    Explanation: The strip() method removes leading and trailing whitespace including newline characters.
+  </div>
+  
+  <div class="question">Q8. What is the correct mode for both reading and writing without deleting the file content?</div>
+  <div class="answer">Answer: b) 'r+'</div>
+  <div class="explanation">
+    Explanation: The 'r+' mode opens the file for both reading and writing without truncating it.
+  </div>
+  
+  <div class="question">Q9. How should LibraryBot count the available books?</div>
+  <div class="answer">Answer: b) Count lines where Status is 'Available'</div>
+  <div class="explanation">
+    Explanation: By checking each line for the status "Available", LibraryBot can accurately count the number of available books.
+  </div>
+  
+  <div class="question">Q10. Which method in Python automatically closes the file after use?</div>
+  <div class="answer">Answer: b) with open(...) as f</div>
+  <div class="explanation">
+    Explanation: Using the 'with' statement ensures that the file is automatically closed after the block of code is executed.
+  </div>
+  
+  <!-- ================================================= -->
+  <!-- Case Study: Library Book Management System — Sorting Techniques -->
+  <!-- ================================================= -->
+  <h2>7. Library Book Management System — Optimizing Book Arrangement Using Sorting Techniques</h2>
+  
+  <!-- MCQs (Single Correct Answer) -->
+  <div class="question">Q1. Which of the following sorting algorithms is comparison-based?</div>
+  <div class="answer">Answer: b) Bubble Sort</div>
+  <div class="explanation">
+    Explanation: Bubble Sort is a classic comparison-based algorithm that repeatedly swaps adjacent elements if they are in the wrong order.
+  </div>
+  
+  <div class="question">Q2. Which sorting technique is considered the most efficient for sorting large datasets?</div>
+  <div class="answer">Answer: c) Merge Sort</div>
+  <div class="explanation">
+    Explanation: Merge Sort has an average and worst-case time complexity of O(n log n), making it efficient for large datasets.
+  </div>
+  
+  <div class="question">Q3. What is the worst-case time complexity of Quick Sort?</div>
+  <div class="answer">Answer: a) O(n²)</div>
+  <div class="explanation">
+    Explanation: Although Quick Sort often performs at O(n log n) on average, its worst-case occurs when the pivot selection is poor, resulting in O(n²) time.
+  </div>
+  
+  <div class="question">Q4. In which sorting algorithm does the largest element "bubble up" to the end in each pass?</div>
+  <div class="answer">Answer: c) Bubble Sort</div>
+  <div class="explanation">
+    Explanation: The term “bubble up” comes directly from Bubble Sort, where the largest element in the unsorted part of the list moves to its correct position in each pass.
+  </div>
+  
+  <div class="question">Q5. Which sorting algorithm uses a "Divide and Conquer" approach?</div>
+  <div class="answer">Answer: b) Merge Sort</div>
+  <div class="explanation">
+    Explanation: Merge Sort divides the dataset into halves, recursively sorts each half, and then merges the sorted halves.
+  </div>
+  
+  <!-- MSQs (Multiple Correct Answers) -->
+  <div class="question">MSQ Q6. Sorting is useful in LMS for:</div>
+  <div class="answer">Answer: a) Fast searching of books; b) Displaying books in an ordered manner</div>
+  <div class="explanation">
+    Explanation: Sorting the books allows for quicker searches and a more organized display, enhancing user experience.
+  </div>
+  
+  <div class="question">MSQ Q7. Stable Sorting Algorithms preserve:</div>
+  <div class="answer">Answer: a) Original Order of Equal Elements</div>
+  <div class="explanation">
+    Explanation: Stability in sorting ensures that if two elements are equal, their original order is maintained.
+  </div>
+  
+  <div class="question">MSQ Q8. Which sorting algorithms are In-Place?</div>
+  <div class="answer">Answer: a) Bubble Sort; c) Insertion Sort; d) Quick Sort</div>
+  <div class="explanation">
+    Explanation: These algorithms sort the list within the original data structure without significant additional space requirements.
+  </div>
+  
+  <div class="question">MSQ Q9. In which situations is Insertion Sort efficient?</div>
+  <div class="answer">Answer: a) Small Dataset; b) Nearly Sorted Data; d) Already Sorted Data</div>
+  <div class="explanation">
+    Explanation: Insertion Sort has low overhead and performs very well on small or nearly sorted datasets.
+  </div>
+  
+  <div class="question">Q10. Merge Sort is preferred over Bubble Sort because:</div>
+  <div class="answer">Answer: a) Faster on large data; c) Divide and Conquer strategy</div>
+  <div class="explanation">
+    Explanation: Merge Sort is significantly faster than Bubble Sort (O(n log n) vs. O(n²)) and uses a divide and conquer approach.
+  </div>
+  
+  <!-- Scenario-Based Questions -->
+  <div class="question">Scenario 1: Library wants to sort a small list of newly arrived books (less than 20 books). Suitable Algorithm:</div>
+  <div class="answer">Answer: Insertion Sort</div>
+  <div class="explanation">
+    Explanation: Insertion Sort is highly efficient for small datasets due to its simplicity and low overhead.
+  </div>
+  
+  <div class="question">Scenario 2: Library needs to sort a very large dataset of books (more than 10,000 books) based on Book Titles. Suitable Algorithm:</div>
+  <div class="answer">Answer: Merge Sort</div>
+  <div class="explanation">
+    Explanation: Merge Sort’s O(n log n) time complexity makes it ideal for handling large datasets efficiently.
+  </div>
+  
+  <div class="question">Scenario 3: Library wants to sort books where the data is already nearly sorted. Suitable Algorithm:</div>
+  <div class="answer">Answer: Insertion Sort</div>
+  <div class="explanation">
+    Explanation: Insertion Sort works very efficiently on nearly sorted data as it requires minimal adjustments.
+  </div>
+  
+  <div class="question">Scenario 4: Library wants stable sorting where the order of equal elements should not change. Suitable Algorithm:</div>
+  <div class="answer">Answer: Merge Sort</div>
+  <div class="explanation">
+    Explanation: Merge Sort is a stable sorting algorithm that preserves the relative order of equivalent elements.
+  </div>
+  
+  <div class="question">Scenario 5: Library wants best average-case performance for sorting large books data. Suitable Algorithm:</div>
+  <div class="answer">Answer: Quick Sort</div>
+  <div class="explanation">
+    Explanation: Quick Sort generally offers excellent average-case performance, making it suitable for large datasets when well-implemented.
+  </div>
+  
+  <p>If you need further clarifications or additional formatting modifications, feel free to ask!</p>
+  
+</body>
+</html>
