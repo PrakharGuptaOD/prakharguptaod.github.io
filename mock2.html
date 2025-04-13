@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Mock Practice Questions 2 – Full Answer Sheet</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; }
+    h1, h2 { color: #2c3e50; }
+    h2 { border-bottom: 2px solid #2c3e50; padding-bottom: 4px; margin-top: 30px; }
+    .question { margin-bottom: 5px; font-weight: bold; }
+    .answer { color: #27ae60; font-weight: bold; margin-bottom: 3px; }
+    .explanation { color: #7f8c8d; margin-bottom: 15px; }
+    .msq, .numerical, .scenario { margin-left: 20px; }
+  </style>
+</head>
+<body>
+  <h1>Mock Practice Questions 2 – Full Answer Sheet</h1>
+  
+  <!-- ================================================= -->
+  <!-- Case Study: PricePredictor – Regularization in Real Estate Price Prediction -->
+  <!-- ================================================= -->
+  <h2>1. PricePredictor — Preventing Overfitting in Real Estate Price Prediction using Regularization Techniques</h2>
+  
+  <div class="question">Q1. What is the main objective of Regularization in ML Models?</div>
+  <div class="answer">Answer: b) Reduce Overfitting</div>
+  <div class="explanation">
+    Explanation: Regularization methods add penalties to the loss function in order to shrink and balance coefficient values, preventing the model from memorizing noise in the training data.
+  </div>
+  
+  <div class="question">Q2. Which Regularization Technique is used for Feature Selection?</div>
+  <div class="answer">Answer: b) Lasso</div>
+  <div class="explanation">
+    Explanation: Lasso Regression (L1 regularization) tends to force some coefficients exactly to zero, thereby performing implicit feature selection.
+  </div>
+  
+  <div class="question">Q3. In Ridge Regression, what happens to the feature coefficients?</div>
+  <div class="answer">Answer: b) They are shrunk towards zero but never become zero</div>
+  <div class="explanation">
+    Explanation: Ridge Regression (L2 regularization) penalizes large coefficients by shrinking them but does not eliminate any feature completely.
+  </div>
+  
+  <div class="question">Q4. Lasso Regression minimizes:</div>
+  <div class="answer">Answer: c) Sum of Squared Errors + L1 Penalty</div>
+  <div class="explanation">
+    Explanation: Lasso minimizes the combination of the sum of squared errors and an L1 penalty term which encourages sparsity in the coefficients.
+  </div>
+  
+  <div class="question">Q5. Which metric is often used to tune Regularization strength (λ)?</div>
+  <div class="answer">Answer: c) Cross-Validation Score</div>
+  <div class="explanation">
+    Explanation: Cross-validation is typically used to determine the optimal λ (or alpha) that balances bias and variance to achieve the best generalization.
+  </div>
+  
+  <!-- MSQs -->
+  <div class="question">MSQ Q6. Overfitting in ML occurs when:</div>
+  <div class="answer">Answer: a) Model learns noise from data; c) Model performs poorly on unseen data</div>
+  <div class="explanation">
+    Explanation: Overfitting happens when a model fits both the underlying pattern and the noise within training data, resulting in poor generalization to new data.
+  </div>
+  
+  <div class="question">MSQ Q7. Regularization helps in:</div>
+  <div class="answer">Answer: a) Reducing variance; c) Preventing overfitting</div>
+  <div class="explanation">
+    Explanation: Regularization techniques reduce model variance, which in turn helps prevent overfitting, at the cost of a small increase in bias.
+  </div>
+  
+  <div class="question">MSQ Q8. Elastic Net is preferred over Lasso when:</div>
+  <div class="answer">Answer: b) Features are highly correlated</div>
+  <div class="explanation">
+    Explanation: Elastic Net combines L1 and L2 penalties and works better than Lasso when there is high multicollinearity among features.
+  </div>
+  
+  <div class="question">MSQ Q9. Higher values of λ in Regularization will:</div>
+  <div class="answer">Answer: b) Shrink coefficients more; c) Lead to underfitting if too large</div>
+  <div class="explanation">
+    Explanation: Increasing λ makes the regularization penalty stronger, which shrinks coefficients further. If λ is too high, the model may become too simple (underfitting).
+  </div>
+  
+  <div class="question">MSQ Q10. Select Regularization Techniques used in Machine Learning:</div>
+  <div class="answer">Answer: a) L1 Regularization; b) L2 Regularization</div>
+  <div class="explanation">
+    Explanation: L1 (Lasso) and L2 (Ridge) regularizations are the most common types used to prevent overfitting in models.
+  </div>
+  
+  <!-- ================================================= -->
+  <!-- Case Study: EduStat — Analyzing Student Performance using Pandas & NumPy -->
+  <!-- ================================================= -->
+  <h2>2. EduStat — Analyzing Student Performance using Pandas & NumPy</h2>
+  
+  <!-- MCQs (Single Correct Answer) -->
+  <div class="question">Q1. Which function is used to read a CSV file in pandas?</div>
+  <div class="answer">Answer: b) pd.read_csv()</div>
+  <div class="explanation">
+    Explanation: The function pd.read_csv() is used to load CSV files into a pandas DataFrame.
+  </div>
+  
+  <div class="question">Q2. Which NumPy function can you use to compute the 90th percentile of scores?</div>
+  <div class="answer">Answer: c) np.percentile()</div>
+  <div class="explanation">
+    Explanation: The function np.percentile() calculates the given percentile (e.g., 90th) of an array.
+  </div>
+  
+  <div class="question">Q3. What does df.groupby('Subject')['Score'].mean() return?</div>
+  <div class="answer">Answer: c) A Series with mean score for each subject</div>
+  <div class="explanation">
+    Explanation: The groupby method groups the DataFrame by 'Subject', and then the mean is calculated for 'Score' for each group.
+  </div>
+  
+  <div class="question">Q4. Which method replaces NaN values in a DataFrame column?</div>
+  <div class="answer">Answer: c) fillna()</div>
+  <div class="explanation">
+    Explanation: The fillna() method is used to fill missing (NaN) values in a DataFrame.
+  </div>
+  
+  <div class="question">Q5. Which operation is vectorized in both NumPy and Pandas?</div>
+  <div class="answer">Answer: c) Applying a condition to all elements</div>
+  <div class="explanation">
+    Explanation: Both NumPy and Pandas support vectorized operations that efficiently apply operations or conditions across entire arrays or DataFrame columns.
+  </div>
+  
+  <!-- MSQs (Multiple Correct Answers) -->
+  <div class="question">MSQ Q6. What are benefits of using Pandas over plain Python lists for data analysis?</div>
+  <div class="answer">Answer: a) Faster performance on large datasets; b) Built-in functions for analysis; d) Easy CSV and Excel handling</div>
+  <div class="explanation">
+    Explanation: Pandas provides a DataFrame structure with efficient built-in functions for data manipulation, making it preferable over plain Python lists for large datasets.
+  </div>
+  
+  <div class="question">MSQ Q7. Select valid ways to filter students with score &gt; 80 and attendance &gt; 90% in a DataFrame df:</div>
+  <div class="answer">Answer: b) df[(df['Score'] &gt; 80) &amp; (df['Attendance'] &gt; 90)]; c) df.query('Score &gt; 80 and Attendance &gt; 90')</div>
+  <div class="explanation">
+    Explanation: These are valid methods for filtering data in a DataFrame. Option a) is syntactically incorrect and d) does not work as expected.
+  </div>
+  
+  <div class="question">MSQ Q8. Which of these are NumPy array operations?</div>
+  <div class="answer">Answer: a) array.mean(); c) np.percentile(array, 75)</div>
+  <div class="explanation">
+    Explanation: The mean method and np.percentile are standard operations available for NumPy arrays. Methods like array.append() are not NumPy operations.
+  </div>
+  
+  <div class="question">MSQ Q9. Which pandas functions help inspect your dataset?</div>
+  <div class="answer">Answer: a) df.describe(); b) df.head(); c) df.tail()</div>
+  <div class="explanation">
+    Explanation: These functions provide a summary, the first few rows, and the last few rows of a DataFrame respectively.
+  </div>
+  
+  <div class="question">MSQ Q10. To write your cleaned DataFrame to a new CSV file, use:</div>
+  <div class="answer">Answer: c) df.to_csv()</div>
+  <div class="explanation">
+    Explanation: The to_csv() method writes a DataFrame to a CSV file.
+  </div>
+  
+  <!-- ================================================= -->
+  <!-- Case Study: HeartRisk Predictor — Health Risk Classification using Logistic Regression -->
+  <!-- ================================================= -->
+  <h2>3. HeartRisk Predictor — Health Risk Classification using Logistic Regression</h2>
+  
+  <!-- MCQs (Single Correct Answer) -->
+  <div class="question">Q1. What activation function is used in Logistic Regression?</div>
+  <div class="answer">Answer: c) Sigmoid</div>
+  <div class="explanation">
+    Explanation: Logistic Regression uses the sigmoid function to squash outputs between 0 and 1.
+  </div>
+  
+  <div class="question">Q2. What is the output range of the Sigmoid function?</div>
+  <div class="answer">Answer: b) 0 to 1</div>
+  <div class="explanation">
+    Explanation: The sigmoid function outputs probabilities in the range of 0 to 1.
+  </div>
+  
+  <div class="question">Q3. Logistic Regression is most suitable for:</div>
+  <div class="answer">Answer: c) Classification Problems</div>
+  <div class="explanation">
+    Explanation: Logistic Regression is used to classify data into discrete categories.
+  </div>
+  
+  <div class="question">Q4. If predicted probability = 0.8, and threshold = 0.5, the predicted class is:</div>
+  <div class="answer">Answer: b) 1</div>
+  <div class="explanation">
+    Explanation: When the predicted probability exceeds the threshold of 0.5, the model classifies the observation as 1 (High Risk).
+  </div>
+  
+  <div class="question">Q5. Which of the following is NOT an evaluation metric for binary classification?</div>
+  <div class="answer">Answer: c) R² Score</div>
+  <div class="explanation">
+    Explanation: R² Score is used for regression problems, not for binary classification.
+  </div>
+  
+  <!-- MSQs (Multiple Correct Answers) -->
+  <div class="question">MSQ Q6. Advantages of Logistic Regression include:</div>
+  <div class="answer">Answer: a) Simple and interpretable; b) Works well with linearly separable data; c) Can model multi-class problems (with extensions)</div>
+  <div class="explanation">
+    Explanation: Logistic Regression is valued for its simplicity and interpretability, and with extensions (like One-vs-Rest), it can also handle multi-class scenarios.
+  </div>
+  
+  <div class="question">MSQ Q7. Components of a Confusion Matrix for binary classification include:</div>
+  <div class="answer">Answer: a) True Positive (TP); b) True Negative (TN); d) False Positive (FP) (and implicitly False Negative (FN))</div>
+  <div class="explanation">
+    Explanation: A confusion matrix summarizes the counts for TP, TN, FP, and FN.
+  </div>
+  
+  <div class="question">MSQ Q8. Which techniques help prevent overfitting in Logistic Regression?</div>
+  <div class="answer">Answer: a) L1 Regularization; b) L2 Regularization; d) Cross-validation</div>
+  <div class="explanation">
+    Explanation: Regularization (both L1 and L2) and cross-validation help maintain a model that generalizes well to unseen data.
+  </div>
+  
+  <div class="question">MSQ Q9. Which of the following affect the performance of Logistic Regression?</div>
+  <div class="answer">Answer: a) Irrelevant features; b) Feature scaling; c) High correlation among features</div>
+  <div class="explanation">
+    Explanation: The inclusion of irrelevant features, poor scaling, or collinearity among features can negatively affect model performance.
+  </div>
+  
+  <div class="question">MSQ Q10. In which cases might Logistic Regression fail?</div>
+  <div class="answer">Answer: a) Highly non-linear data; c) When classes are imbalanced; d) When data has a high level of noise</div>
+  <div class="explanation">
+    Explanation: Logistic Regression models a linear decision boundary; non-linear patterns, imbalanced classes, or noisy data can limit its effectiveness.
+  </div>
+  
+  <!-- ================================================= -->
+  <!-- Case Study: BookFinder — Efficient Search in a Digital Library -->
+  <!-- ================================================= -->
+  <h2>4. BookFinder — Efficient Search in a Digital Library</h2>
+  
+  <!-- MCQs (Single Correct Answer) -->
+  <div class="question">Q1. Which condition must be true for Binary Search to work correctly?</div>
+  <div class="answer">Answer: b) Data must be sorted</div>
+  <div class="explanation">
+    Explanation: Binary Search requires that the dataset be sorted in order to divide the search interval.
+  </div>
+  
+  <div class="question">Q2. What is the worst-case time complexity of Linear Search?</div>
+  <div class="answer">Answer: c) O(n)</div>
+  <div class="explanation">
+    Explanation: Linear Search may check each element, yielding a worst-case time complexity of O(n).
+  </div>
+  
+  <div class="question">Q3. What is the best-case time complexity of Binary Search?</div>
+  <div class="answer">Answer: c) O(1)</div>
+  <div class="explanation">
+    Explanation: If the target element is at the middle position on the first try, Binary Search achieves O(1) time.
+  </div>
+  
+  <div class="question">Q4. What is returned if the key is not found in Binary Search?</div>
+  <div class="answer">Answer: b) -1 or "Not Found"</div>
+  <div class="explanation">
+    Explanation: When an element is not found, Binary Search typically returns -1 or a similar indicator.
+  </div>
+  
+  <div class="question">Q5. Linear Search is more suitable when:</div>
+  <div class="answer">Answer: c) Data is unsorted</div>
+  <div class="explanation">
+    Explanation: Linear Search does not require data to be sorted, making it suitable for unsorted collections.
+  </div>
+  
+  <div class="question">Q6. How many comparisons (approx.) will Binary Search need for 1024 elements in worst case?</div>
+  <div class="answer">Answer: a) 10</div>
+  <div class="explanation">
+    Explanation: Binary Search divides the dataset roughly in half with each comparison; log2(1024) = 10 comparisons.
+  </div>
+  
+  <div class="question">Q7. Binary Search follows which strategy?</div>
+  <div class="answer">Answer: b) Divide and Conquer</div>
+  <div class="explanation">
+    Explanation: Binary Search divides the dataset into halves repeatedly, a classic divide and conquer approach.
+  </div>
+  
+  <div class="question">Q8. Which of the following is not true about Linear Search?</div>
+  <div class="answer">Answer: c) Works only with numbers</div>
+  <div class="explanation">
+    Explanation: Linear Search can be applied to any list regardless of data type; the other statements are true.
+  </div>
+  
+  <div class="question">Q9. What is the mid-point index in Binary Search for start = 0, end = 9?</div>
+  <div class="answer">Answer: b) 4</div>
+  <div class="explanation">
+    Explanation: The mid index is floor((0+9)/2) = 4.
+  </div>
+  
+  <div class="question">Q10. Why might Binary Search perform poorly if data is unsorted?</div>
+  <div class="answer">Answer: d) Both it may enter an infinite loop and give wrong output</div>
+  <div class="explanation">
+    Explanation: Binary Search assumes sorted data; unsorted data can lead to incorrect midpoints and faulty logic.
+  </div>
+  
+  <!-- ================================================= -->
+  <!-- Case Study: ModelMetrics — Evaluating ML Models for Health & Finance Sectors -->
+  <!-- ================================================= -->
+  <h2>5. ModelMetrics — Evaluating ML Models for Health & Finance Sectors</h2>
+  
+  <!-- MCQs (Single Correct Answer Only) -->
+  <div class="question">Q1. Which metric should be used when false positives are more dangerous than false negatives?</div>
+  <div class="answer">Answer: c) Precision</div>
+  <div class="explanation">
+    Explanation: Precision measures the proportion of positive identifications that were actually correct; thus, when false positives are more harmful, precision is key.
+  </div>
+  
+  <div class="question">Q2. If a classification model has high recall but low precision, it means:</div>
+  <div class="answer">Answer: b) It makes many false positives</div>
+  <div class="explanation">
+    Explanation: High recall indicates most actual positives are identified, but low precision means many of those identified are false positives.
+  </div>
+  
+  <div class="question">Q3. The metric that gives equal importance to precision and recall is:</div>
+  <div class="answer">Answer: c) F1-Score</div>
+  <div class="explanation">
+    Explanation: The F1-Score is the harmonic mean of precision and recall, giving equal weight to both.
+  </div>
+  
+  <div class="question">Q4. Which metric is most suitable for a regression task?</div>
+  <div class="answer">Answer: c) RMSE</div>
+  <div class="explanation">
+    Explanation: RMSE (Root Mean Squared Error) quantifies the error magnitude for regression models.
+  </div>
+  
+  <div class="question">Q5. If R² score = 1, what does it indicate?</div>
+  <div class="answer">Answer: c) Perfect prediction</div>
+  <div class="explanation">
+    Explanation: An R² score of 1 means the model perfectly explains the variability in the response data.
+  </div>
+  
+  <div class="question">Q6. What does a confusion matrix show?</div>
+  <div class="answer">Answer: c) Count of TP, TN, FP, FN</div>
+  <div class="explanation">
+    Explanation: A confusion matrix tabulates the true positives, true negatives, false positives, and false negatives.
+  </div>
+  
+  <div class="question">Q7. Which metric is calculated as: TP / (TP + FN)?</div>
+  <div class="answer">Answer: b) Recall</div>
+  <div class="explanation">
+    Explanation: Recall quantifies the proportion of actual positives that are correctly identified by the model.
+  </div>
+  
+  <div class="question">Q8. Which error metric penalizes larger errors more than smaller ones?</div>
+  <div class="answer">Answer: b) MSE</div>
+  <div class="explanation">
+    Explanation: MSE (Mean Squared Error) squares the error term, thus penalizing larger deviations more than smaller ones.
+  </div>
+  
+  <div class="question">Q9. Which of the following is not a classification metric?</div>
+  <div class="answer">Answer: d) RMSE</div>
+  <div class="explanation">
+    Explanation: RMSE is used for regression tasks, not for classification.
+  </div>
+  
+  <div class="question">Q10. What is the range of R² score?</div>
+  <div class="answer">Answer: d) -∞ to  ∞</div>
+  <div class="explanation">
+    Explanation: In practice, R² can be negative when the model fits the data very poorly and up to 1 for a perfect model.
+  </div>
+  
+  <!-- ================================================= -->
+  <!-- Case Study: BuildPrice AI — Predicting Construction Cost using Regression -->
+  <!-- ================================================= -->
+  <h2>6. BuildPrice AI — Predicting Construction Cost using Regression</h2>
+  
+  <div class="question">Q1. What kind of relationship does Linear Regression model?</div>
+  <div class="answer">Answer: c) Straight-line</div>
+  <div class="explanation">
+    Explanation: Linear Regression models the relationship between variables as a straight line.
+  </div>
+  
+  <div class="question">Q2. Polynomial Regression is useful when:</div>
+  <div class="answer">Answer: c) Relationship is non-linear</div>
+  <div class="explanation">
+    Explanation: Polynomial Regression fits data where the relationship between the independent and dependent variables is curved.
+  </div>
+  
+  <div class="question">Q3. In Polynomial Regression, what is added to the model?</div>
+  <div class="answer">Answer: c) Powers of input features (x², x³, ...)</div>
+  <div class="explanation">
+    Explanation: Polynomial Regression augments the model by including higher-degree terms of the input features.
+  </div>
+  
+  <div class="question">Q4. Which of the following can result in overfitting in Polynomial Regression?</div>
+  <div class="answer">Answer: c) Very high degree of polynomial</div>
+  <div class="explanation">
+    Explanation: Using a polynomial degree that is too high can cause the model to fit the noise in the training data.
+  </div>
+  
+  <div class="question">Q5. Which metric helps compare both models to see which fits the data better?</div>
+  <div class="answer">Answer: c) R² Score</div>
+  <div class="explanation">
+    Explanation: The R² Score measures the proportion of variance explained by the model; higher values indicate a better fit.
+  </div>
+  
+  <div class="question">Q6. Linear Regression assumes the target variable changes:</div>
+  <div class="answer">Answer: b) Linearly with input</div>
+  <div class="explanation">
+    Explanation: Linear Regression is based on a linear assumption between the input features and the output variable.
+  </div>
+  
+  <div class="question">Q7. What transformation is needed before applying Polynomial Regression?</div>
+  <div class="answer">Answer: b) Adding polynomial features</div>
+  <div class="explanation">
+    Explanation: Before applying Polynomial Regression, the original features need to be transformed to include their polynomial (e.g., squared, cubed) terms.
+  </div>
+  
+  <div class="question">Q8. Which library in Python is commonly used to create polynomial features?</div>
+  <div class="answer">Answer: c) sklearn.preprocessing</div>
+  <div class="explanation">
+    Explanation: The PolynomialFeatures class in the sklearn.preprocessing module is used to generate polynomial feature combinations.
+  </div>
+  
+  <div class="question">Q9. If the R² score is 0.92 for Linear and 0.97 for Polynomial Regression, what can be said?</div>
+  <div class="answer">Answer: b) Polynomial fits the data better</div>
+  <div class="explanation">
+    Explanation: A higher R² score indicates a better fit to the training data; hence, Polynomial Regression performs better in this scenario.
+  </div>
+  
+  <div class="question">Q10. Polynomial Regression is still a type of:</div>
+  <div class="answer">Answer: b) Linear Model (after feature transformation)</div>
+  <div class="explanation">
+    Explanation: Although polynomial terms are added, the model remains linear in the parameters after feature transformation.
+  </div>
+  
+  <!-- ================================================= -->
+  <!-- Case Study: EvalSuite — Dashboard for Evaluating ML Models -->
+  <!-- ================================================= -->
+  <h2>7. EvalSuite — Evaluating ML Models for Multiple Domains</h2>
+  
+  <!-- MCQs (Single Correct Answer) -->
+  <div class="question">Q1. Which metric is best to evaluate a clustering model like K-Means?</div>
+  <div class="answer">Answer: b) Silhouette Score</div>
+  <div class="explanation">
+    Explanation: The Silhouette Score measures how similar an object is to its own cluster compared to other clusters.
+  </div>
+  
+  <div class="question">Q2. What does MAE (Mean Absolute Error) measure?</div>
+  <div class="answer">Answer: c) Average of absolute prediction errors</div>
+  <div class="explanation">
+    Explanation: MAE calculates the average absolute difference between the predicted and actual values.
+  </div>
+  
+  <div class="question">Q3. Which metric is calculated as: (2 × Precision × Recall) / (Precision + Recall)?</div>
+  <div class="answer">Answer: b) F1-Score</div>
+  <div class="explanation">
+    Explanation: This formula is the harmonic mean of precision and recall, known as the F1-Score.
+  </div>
+  
+  <div class="question">Q4. What is Reconstruction Error mostly used for?</div>
+  <div class="answer">Answer: c) Measuring error in unsupervised autoencoders</div>
+  <div class="explanation">
+    Explanation: Reconstruction Error quantifies the difference between the original input and its reconstruction, commonly in autoencoder models for anomaly detection.
+  </div>
+  
+  <div class="question">Q5. When false positives must be minimized (e.g. spam filtering), which metric is most important?</div>
+  <div class="answer">Answer: b) Precision</div>
+  <div class="explanation">
+    Explanation: Precision focuses on the accuracy of positive predictions, which is crucial when false positives are costly.
+  </div>
+  
+  <!-- MSQs (Multiple Correct Answers) -->
+  <div class="question">MSQ Q6. Which of the following are classification metrics?</div>
+  <div class="answer">Answer: a) Accuracy; b) Recall; d) F1-Score</div>
+  <div class="explanation">
+    Explanation: Accuracy, recall, and F1-score are all metrics used in evaluating classification models.
+  </div>
+  
+  <div class="question">MSQ Q7. Select all that are regression evaluation metrics:</div>
+  <div class="answer">Answer: a) MAE; b) MSE; d) R² Score</div>
+  <div class="explanation">
+    Explanation: MAE, MSE, and R² Score are widely used metrics for regression tasks.
+  </div>
+  
+  <div class="question">MSQ Q8. When is Recall more important than Precision?</div>
+  <div class="answer">Answer: a) Cancer detection; d) Fraud transaction detection</div>
+  <div class="explanation">
+    Explanation: In scenarios like cancer detection or fraud detection, missing a positive case (low recall) is more critical than having some false alarms.
+  </div>
+  
+  <div class="question">MSQ Q9. What are properties of Silhouette Score?</div>
+  <div class="answer">Answer: a) Ranges between -1 and 1; b) Measures how well points fit into clusters</div>
+  <div class="explanation">
+    Explanation: A Silhouette Score near 1 indicates that data points are well-clustered, while values near -1 indicate poor clustering.
+  </div>
+  
+  <div class="question">MSQ Q10. Reconstruction error can be used to:</div>
+  <div class="answer">Answer: a) Detect anomalies; c) Determine outliers in autoencoders</div>
+  <div class="explanation">
+    Explanation: Reconstruction error is useful for identifying anomalies when the reconstruction of normal data is much better than that of outliers.
+  </div>
+  
+  <p>If you need any further clarifications, please let me know at +91 955 565 8787 or 24082700@scale.iitrpr.ac.in !</p>
+  
+</body>
+</html>
