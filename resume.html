@@ -1,199 +1,322 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Prakhar Gupta - Resume</title>
-  <style>
-    /* Reset and basic styles */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      background-color: #f2f2f2;
-      color: #333;
-      padding: 1rem;
-    }
-    .container {
-      max-width: 800px;
-      margin: auto;
-      background: #fff;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-    header {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-    header h1 {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
-    .contact {
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
-    }
-    .contact a {
-      color: #2980b9;
-      text-decoration: none;
-      display: inline-block;
-      margin: 0.3rem 0;
-    }
-    section {
-      margin-bottom: 1.5rem;
-    }
-    section h2 {
-      font-size: 1.5rem;
-      color: #2c3e50;
-      margin-bottom: 0.5rem;
-      border-bottom: 2px solid #2980b9;
-      display: inline-block;
-      padding-bottom: 0.2rem;
-    }
-    .two-col {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-    .two-col > div {
-      flex: 1;
-      min-width: 250px;
-    }
-    ul {
-      list-style-type: disc;
-      margin-left: 1.5rem;
-      margin-top: 0.5rem;
-    }
-    p, ul {
-      margin-bottom: 1rem;
-    }
-    footer {
-      text-align: center;
-      font-size: 0.85rem;
-      margin-top: 2rem;
-      border-top: 1px solid #ddd;
-      padding-top: 1rem;
-    }
-    
-    /* Responsive adjustments */
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 1.75rem;
-      }
-      section h2 {
-        font-size: 1.3rem;
-      }
-      .container {
-        padding: 1rem;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prakhar Gupta | AI Developer & Researcher</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap');
+
+        :root {
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --accent: #38bdf8;
+            --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+            --border: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        header {
+            text-align: left;
+            margin-bottom: 4rem;
+            animation: fadeIn 1s ease-out;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .contact-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .contact-bar a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-bar a:hover {
+            color: var(--accent);
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 4rem;
+            animation: slideUp 1s ease-out;
+        }
+
+        h2 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        h2::after {
+            content: "";
+            height: 1px;
+            flex-grow: 1;
+            background: var(--border);
+        }
+
+        /* Experience Card */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+        }
+
+        .role { font-weight: 700; font-size: 1.2rem; }
+        .date { color: var(--accent); font-size: 0.9rem; font-weight: 600; }
+        .org { color: var(--text-secondary); margin-bottom: 1rem; display: block; }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-group {
+            background: rgba(56, 189, 248, 0.05);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border-left: 3px solid var(--accent);
+        }
+
+        .skill-group h3 {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: var(--border);
+            padding: 0.25rem 0.75rem;
+            border-radius: 2rem;
+            font-size: 0.8rem;
+            color: var(--text-primary);
+        }
+
+        /* Projects */
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            padding: 1.5rem;
+            border-radius: 1rem;
+            background: linear-gradient(to right bottom, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+            border: 1px solid var(--border);
+        }
+
+        .project-card h3 {
+            margin-bottom: 0.75rem;
+            color: var(--accent);
+        }
+
+        .project-link {
+            display: inline-block;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            .card-header { flex-direction: column; }
+            .date { margin-top: 0.25rem; }
+            body { padding: 1rem; }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <!-- Header with name and contact links -->
-    <header>
-      <h1>Prakhar Gupta</h1>
-      <div class="contact">
-        <a href="https://linkedin.com/in/prakhar-kselis" target="_blank">LinkedIn - @prakhar-kselis</a><br>
-        <a href="mailto:prakhargupta.od@gmail.com">Email - prakhargupta.od@gmail.com</a><br>
-        <a href="https://github.com/PrakharGuptaOD" target="_blank">GitHub - github.com/PrakharGuptaOD</a>
-      </div>
-    </header>
 
-    
+    <div class="container">
+        <header>
+            <h1>Prakhar Gupta</h1>
+            <p class="subtitle">AI Developer & Researcher</p>
+            <div class="contact-bar">
+                <a href="mailto:prakhargupta.od@gmail.com">prakhargupta.od@gmail.com</a>
+                <span>+91 9555658787</span>
+                <span>Rudrapur, India</span>
+                <a href="https://linkedin.com/in/prakhar-kselis" target="_blank">LinkedIn</a>
+                <a href="https://github.com/PrakharGuptaOD" target="_blank">GitHub</a>
+            </div>
+        </header>
 
-    <!-- Objective -->
-    <section>
-      <h2>Objective</h2>
-      <p>
-        Passionate about research and education, aiming to bridge the gap between theoretical knowledge and practical learning through meaningful contributions in academia and EdTech initiatives.
-      </p>
-    </section>
+        <section id="summary">
+            <h2>Summary</h2>
+            <p style="color: var(--text-secondary); font-size: 1.1rem;">
+                AI-focused undergraduate with hands-on experience in ML-driven analytics and small language models, specializing in applied AI and research-oriented systems.
+            </p>
+        </section>
 
-    <!-- Professional Education -->
-    <section>
-      <h2>Professional Education</h2>
-      <p>
-        <strong>Minor in AI - IIT Ropar</strong> : Started in August 2024. This course provided me with an in-depth understanding of Machine Learning, Deep Learning, and Artificial Intelligence.
-      </p>
-    </section>
+        <section id="skills">
+            <h2>Technical Stack</h2>
+            <div class="skills-grid">
+                <div class="skill-group">
+                    <h3>ML & Data Science</h3>
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">PyTorch</span>
+                        <span class="tag">TensorFlow</span>
+                        <span class="tag">Scikit-Learn</span>
+                        <span class="tag">Pandas</span>
+                        <span class="tag">NumPy</span>
+                        <span class="tag">NLP</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <h3>Engineering & Tools</h3>
+                    <div class="tags">
+                        <span class="tag">Git</span>
+                        <span class="tag">VS Code</span>
+                        <span class="tag">Google Colab</span>
+                        <span class="tag">Unity</span>
+                        <span class="tag">Discord API</span>
+                        <span class="tag">JavaScript</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <!-- Technical Skills -->
-    <section>
-      <h2>Technical Skills</h2>
-      <p><strong>Programming Languages:</strong> Python (Primary), C++, C, C#, SQL</p>
-      <p><strong>Game Development:</strong> 2D Game Development with Godot &amp; Unity</p>
-      <p><strong>Data Science &amp; ML Libraries:</strong></p>
-      <ul>
-        <li>Proficient: Pandas, NumPy, Matplotlib</li>
-        <li>Currently Learning: PyTorch, TensorFlow, Keras</li>
-      </ul>
-      <p><strong>Software &amp; Tools:</strong> Microsoft Office Suite (Word, Excel, PowerPoint), VS Code, VS Community, Google Colab</p>
-    </section>
+        <section id="experience">
+            <h2>Experience</h2>
+            <div class="card">
+                <div class="card-header">
+                    <span class="role">Intern</span>
+                    <span class="date">02/2026 – Present</span>
+                </div>
+                <span class="org">Annam.ai | Rupnagar, Punjab, IN</span>
+                <ul style="margin-left: 1.2rem; margin-top: 1rem; color: var(--text-secondary);">
+                    <li>Engineered automated data collection pipeline for LMS identity mapping.</li>
+                    <li>Developed high-concurrency ticketing engine managing 1,000+ simultaneous tickets.</li>
+                    <li>Automated logistics for student evaluations using dynamic UI flows.</li>
+                    <li>Built scalable modular architecture using Python Cogs.</li>
+                </ul>
+            </div>
+        </section>
 
-    <!-- Soft Skills -->
-    <section>
-      <h2>Soft Skills</h2>
-      <ul>
-        <li>Community Management – Experienced in moderating Discord servers/several communities.</li>
-        <li>Problem-Solving &amp; Critical Thinking – Tackles challenges with logical and innovative solutions.</li>
-        <li>Adaptability – Quickly learns and applies new concepts.</li>
-        <li>Collaboration &amp; Communication – Works well in teams and explains complex ideas simply.</li>
-        <li>Creativity &amp; Self-Learning – Innovates in education and continuously explores new tools.</li>
-      </ul>
-    </section>
+        <section id="education">
+            <h2>Education</h2>
+            <div class="card">
+                <div class="card-header">
+                    <span class="role">IIT Ropar</span>
+                    <span class="date">Ended 02/2026</span>
+                </div>
+                <span class="org">Major in AI: Machine Learning, Deep Learning, and Artificial Intelligence</span>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="role">IIT Madras</span>
+                    <span class="date">Current</span>
+                </div>
+                <span class="org">BS: Data Science and Applications (Foundation Level)</span>
+            </div>
+        </section>
 
-    <!-- Projects -->
-    <section>
-      <h2>Projects (major)</h2>
-      <div class="two-col">
-        <div>
-          <p><strong>Console-Based CSV Editor (Python) | 12th Grade</strong></p>
-          <p>
-            Developed a console-based CSV editor using Python as an alternative to MySQL when it was unresponsive. Implemented Python’s first principles and utilized Pandas for data manipulation, reinforcing my understanding of database concepts.
-          </p>
-        </div>
-        <div>
-          <p><strong>Story-Based Single Player 2D Game (Godot)</strong></p>
-          <p>
-            Created a narrative-driven 2D game while transitioning from Unity to Godot. Focused on game mechanics, storytelling, and player engagement.
-          </p>
-        </div>
-      </div>
-    </section>
+        <section id="projects">
+            <h2>Selected Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>Newru Bot</h3>
+                    <p style="color: var(--text-secondary);">Multipurpose corporate Discord bot with automated ticketing and member management.</p>
+                    <a href="https://github.com/PrakharGuptaOD/newru_bot" class="project-link">View Repository →</a>
+                </div>
+                <div class="project-card">
+                    <h3>AI Quiz Generator</h3>
+                    <p style="color: var(--text-secondary);">NLP-powered system extracting key concepts from books to generate smart quizzes.</p>
+                    <a href="https://github.com/PrakharGuptaOD/ai_quiz_based_on_book" class="project-link">View Repository →</a>
+                </div>
+                <div class="project-card">
+                    <h3>Finetuned SLM Storyteller</h3>
+                    <p style="color: var(--text-secondary);">Culturally aligned Small Language Model designed using logic-constrained synthetic data.</p>
+                </div>
+            </div>
+        </section>
+    </div>
 
-    <!-- School Education -->
-    <section>
-      <h2>School Education</h2>
-      <div class="two-col">
-        <div>
-          <p><strong>12th | PCM + CS</strong></p>
-          <p>Ratna Memorial Public School | 2024 | ~82% (CBSE Board)</p>
-          <p>Strengthened social and interpersonal skills through academics and extracurriculars.</p>
-        </div>
-        <div>
-          <p><strong>10th | Science &amp; Mathematics</strong></p>
-          <p>St. Xavier's School, Bhatpar Rani, Deoria | 2022 | ~90% (CBSE Board)</p>
-          <p>Developed problem-solving skills and a deep conceptual understanding.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer with links -->
-    <footer>
-      <p>
-        <a href="https://linkedin.com/in/prakhar-kselis" target="_blank">https://linkedin.com/in/prakhar-kselis</a><br>
-        <a href="mailto:prakhargupta.od@gmail.com">prakhargupta.od@gmail.com</a><br>
-        <a href="https://github.com/PrakharGuptaOD" target="_blank">https://github.com/PrakharGuptaOD</a>
-      </p>
-      <p>Prakhar Gupta</p>
-    </footer>
-  </div>
 </body>
 </html>
