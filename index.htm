@@ -1,58 +1,295 @@
-
- <!--        my resume : <a href="resume.html">click here</a><br>
-         notes of minor : <a href="https://prakharguptaod.github.io/notes">click here</a><br>-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Prakhar's Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Prakhar Gupta | Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+        :root {
+            --bg: #050816;
+            --primary: #38bdf8;
+            --secondary: #818cf8;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+            --text: #f1f5f9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Blobs */
+        .blob {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+            filter: blur(80px);
+            animation: move 20s infinite alternate;
+        }
+
+        @keyframes move {
+            from { transform: translate(-10%, -10%); }
+            to { transform: translate(20%, 20%); }
+        }
+
+        /* Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 8, 22, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: 0.3s;
+            opacity: 0.8;
+        }
+
+        nav a:hover {
+            opacity: 1;
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 10vw, 5rem);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #94a3b8;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #000;
+        }
+
+        .btn-outline {
+            border: 1px solid var(--border);
+            color: var(--text);
+            background: var(--glass);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(56, 189, 248, 0.2);
+        }
+
+        /* Sections */
+        .section {
+            padding: 100px 10%;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        h2::after {
+            content: "";
+            height: 1px;
+            background: var(--border);
+            flex-grow: 1;
+        }
+
+        /* Project Cards */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+
+        .project-card:hover {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .project-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .project-card p {
+            font-size: 0.95rem;
+            color: #94a3b8;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 10%;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: #64748b;
+        }
+
+        .social-links {
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .social-links a {
+            color: var(--text);
+            font-size: 1.5rem;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            nav ul { display: none; } /* Add a hamburger menu later if needed */
+            .hero h1 { font-size: 3rem; }
+        }
+    </style>
 </head>
 <body>
 
-  <header>
-    <nav>
-      <div class="logo">Prakhar</div>
-      <ul>
-        <li><a href="resume.html" target="_blank">Resume</li>
-        <li><a href="https://prakharguptaod.github.io/notes">Notes</li>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+    <div class="blob"></div>
 
-  <section id="home" class="section">
-    <h1>Hi, I'm Prakhar</h1>
-    <p>Aspiring Developer | Learner | Creator</p>
-  </section>
+    <header>
+        <div class="logo">Prakhar.Gupta</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="https://prakharguptaod.github.io/notes">Notes</a></li>
+                <li><a href="resume.html">Resume</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <section id="about" class="section">
-    <h2>About Me</h2>
-    <p>I am a passionate learner who enjoys building software, exploring data science, and contributing to meaningful projects.</p>
-  </section>
+    <section id="home" class="hero">
+        <h1>Building the future with <br><span style="color: var(--primary)">AI & Code.</span></h1>
+        <p>I'm Prakhar, an AI Developer and Researcher at IIT Madras & IIT Ropar, focused on LLMs, RAG systems, and automation.</p>
+        <div class="btn-group">
+            <a href="resume.html" class="btn btn-primary">View Resume</a>
+            <a href="https://prakharguptaod.github.io/notes" class="btn btn-outline">Read My Notes</a>
+        </div>
+    </section>
 
-  <section id="projects" class="section">
-    <h2>Projects</h2>
-    <ul class="project-list">
-      <li><strong>Group Chat Analyzer</strong> – WhatsApp data visualization with Streamlit</li>
-      <li><strong>Portfolio Website</strong> – You're looking at it!</li>
-    </ul>
-  </section>
+    <section id="about" class="section">
+        <h2>About Me</h2>
+        <div style="max-width: 800px; color: #94a3b8; font-size: 1.1rem;">
+            <p>I am a Data Science undergraduate at <strong>IIT Madras</strong> and an AI Major student at <strong>IIT Ropar</strong>[cite: 1]. My work sits at the intersection of Artificial Intelligence and software engineering. I specialize in building complex RAG pipelines, fine-tuning language models, and creating highly automated Discord systems for community management[cite: 1].</p>
+        </div>
+    </section>
 
-  <section id="contact" class="section">
-    <h2>Contact Me</h2>
-    <p>Email: prakhargupta.od@gmail.com</p>
-    <p>GitHub: <a href="https://github.com/PrakharGuptaOD" target="_blank">PrakharGuptaOD</a></p>
-  </section>
+    <section id="projects" class="section">
+        <h2>Featured Projects</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <h3>Newru Bot</h3>
+                <p>A semi-automated, self-deployable Discord bot for corporate usage with ticketing and member management.</p>
+                <a href="https://github.com/PrakharGuptaOD/newru_bot" style="color: var(--primary); text-decoration: none; font-size: 0.8rem; font-weight: 700;">GITHUB REPO →</a>
+            </div>
+            <div class="project-card">
+                <h3>AI Quiz Generator</h3>
+                <p>NLP system that generates smart quizzes directly from book content using Transformers and Streamlit.</p>
+                <a href="https://github.com/PrakharGuptaOD/ai_quiz_based_on_book" style="color: var(--primary); text-decoration: none; font-size: 0.8rem; font-weight: 700;">GITHUB REPO →</a>
+            </div>
+            <div class="project-card">
+                <h3>Historical Storyteller</h3>
+                <p>Culturally aligned Small Language Model (SLM) focused on reducing hallucinations in historical narratives.</p>
+                <span style="color: #64748b; font-size: 0.8rem; font-weight: 700;">RESEARCH PROJECT</span>
+            </div>
+        </div>
+    </section>
 
-  <footer>
-    <p>© 2025 Prakhar Gupta</p>
-  </footer>
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/PrakharGuptaOD"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/prakhar-kselis"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:prakhargupta.od@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p>© 2026 Prakhar Gupta. Built with passion & AI.</p>
+    </footer>
 
-  <script src="script.js"></script>
 </body>
 </html>
