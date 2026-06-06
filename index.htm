@@ -45,6 +45,7 @@
             padding: 40px 0 20px 0;
             border-bottom: 1px solid var(--border);
             margin-bottom: 40px;
+            position: relative;
         }
 
         .logo {
@@ -71,6 +72,21 @@
 
         nav a:hover {
             color: var(--accent);
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text);
+            transition: color 0.2s;
+        }
+
+        .mobile-menu-btn:focus {
+            outline: none;
         }
 
         /* Hero Section */
@@ -148,7 +164,7 @@
             border-bottom: 1px solid var(--border);
         }
 
-        /* Project Cards */
+        /* Project / Hobby Cards */
         .project-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -161,6 +177,8 @@
             border-radius: 4px;
             background-color: #fff;
             transition: border-color 0.2s;
+            display: flex;
+            flex-direction: column;
         }
 
         .project-card:hover {
@@ -179,6 +197,7 @@
             font-size: 0.95rem;
             color: #666;
             margin-bottom: 20px;
+            flex-grow: 1; /* Pushes the link to the bottom */
         }
 
         .project-link {
@@ -188,6 +207,7 @@
             text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 0.05em;
+            align-self: flex-start;
         }
         
         .project-link:hover {
@@ -220,12 +240,44 @@
             color: var(--accent);
         }
 
+        /* Mobile Responsiveness */
         @media (max-width: 600px) {
             header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 20px;
+                /* Keeps logo and hamburger on the same line */
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
             }
+
+            .mobile-menu-btn {
+                display: block; /* Show hamburger on mobile */
+            }
+
+            nav ul {
+                display: none; /* Hide standard menu */
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: -20px; /* Offset for body padding */
+                width: calc(100% + 40px);
+                background-color: var(--bg);
+                padding: 20px 0;
+                border-bottom: 1px solid var(--border);
+                box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+                z-index: 100;
+                text-align: center;
+                gap: 1.5rem;
+            }
+
+            nav ul.show {
+                display: flex; /* Show when toggled via JS */
+            }
+
+            nav a {
+                font-size: 1.1rem;
+                display: block;
+            }
+
             footer {
                 flex-direction: column;
                 gap: 20px;
@@ -241,12 +293,17 @@
 
     <header>
         <a href="#home" class="logo">Prakhar Gupta</a>
+        <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Toggle menu">
+            <i class="fas fa-bars"></i>
+        </button>
         <nav>
-            <ul>
+            <ul id="navMenu">
                 <li><a href="#about">About</a></li>
                 <li><a href="#projects">Projects</a></li>
+                <li><a href="#hobbies">Hobbies</a></li>
                 <li><a href="https://prakharguptaod.github.io/notes">Notes</a></li>
                 <li><a href="resume.html">Resume</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -288,6 +345,20 @@
         </div>
     </section>
 
+    <section id="hobbies" class="section">
+        <h2>Hobbies & Musings</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <h3>Photography</h3>
+                <p>A visual diary of moments, places, and perspectives captured through my lens.</p>
+                <a href="#" class="project-link">View Photos &rarr;</a> </div>
+            <div class="project-card">
+                <h3>Gallery of My Life</h3>
+                <p>A curated collection of written entries chronicling my personal experiences, reflections, and journeys.</p>
+                <a href="#" class="project-link">Read Entries &rarr;</a> </div>
+        </div>
+    </section>
+
     <footer>
         <p>&copy; 2026 Prakhar Gupta.</p>
         <div class="social-links">
@@ -297,5 +368,36 @@
         </div>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navMenu = document.getElementById('navMenu');
+            const navLinks = navMenu.querySelectorAll('a');
+            const icon = mobileMenuBtn.querySelector('i');
+
+            // Toggle menu on button click
+            mobileMenuBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('show');
+                
+                // Swap between hamburger and X icon
+                if (navMenu.classList.contains('show')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+
+            // Close menu when a link is clicked
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('show');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                });
+            });
+        });
+    </script>
 </body>
 </html>
