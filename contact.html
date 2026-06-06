@@ -163,11 +163,6 @@
             background-color: #fff;
         }
 
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
         .btn-submit {
             display: inline-block;
             width: 100%;
@@ -186,6 +181,15 @@
 
         .btn-submit:hover {
             opacity: 0.85;
+        }
+        
+        .success-message {
+            display: none;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #27ae60;
+            font-weight: 600;
+            text-align: center;
         }
 
         /* Footer */
@@ -280,24 +284,18 @@
         </div>
 
         <div class="contact-form-container">
-            <form class="contact-form" action="#" method="POST">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required placeholder="Jane Doe">
-                </div>
+            <form class="contact-form" action="https://docs.google.com/forms/d/e/1FAIpQLSdnFVNtsmcTibSbo4zrqI7915ff68Vc16GpESu_68plFYEfvw/formResponse" method="POST" target="hidden_iframe" onsubmit="document.getElementById('success-msg').style.display='block';">
                 
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required placeholder="jane@example.com">
+                    <label for="name">Message</label>
+                    <input type="text" id="name" name="entry.1934216261" required placeholder="Your message here...">
                 </div>
                 
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" required placeholder="How can we collaborate?"></textarea>
-                </div>
-                
-                <button type="submit" class="btn-submit">Send Message</button>
+                <button type="submit" class="btn-submit">Submit</button>
+                <div id="success-msg" class="success-message">Message sent successfully!</div>
             </form>
+            
+            <iframe name="hidden_iframe" style="display:none;"></iframe>
         </div>
     </main>
 
