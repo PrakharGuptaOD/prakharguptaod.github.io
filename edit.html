@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal Photo Editor</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
+    
+    <style>
+        /* Minimalist aesthetic similar to kselis.github.io */
+        :root {
+            --bg: #fafafa;
+            --text: #111;
+            --accent: #000;
+            --canvas-bg: #e5e5e5;
+            --border: #ddd;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        header {
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0 0 10px 0;
+        }
+
+        .toolbar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Clean, brutalist buttons */
+        button, .file-upload {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: opacity 0.2s;
+        }
+
+        button:hover, .file-upload:hover {
+            opacity: 0.8;
+        }
+
+        /* Hide the default file input, style the label */
+        input[type="file"] {
+            display: none;
+        }
+
+        .canvas-wrapper {
+            background-image: 
+                /* Checkerboard pattern to show transparency */
+                linear-gradient(45deg, var(--canvas-bg) 25%, transparent 25%), 
+                linear-gradient(135deg, var(--canvas-bg) 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, var(--canvas-bg) 75%),
+                linear-gradient(135deg, transparent 75%, var(--canvas-bg) 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 0, 10px -10px, 0px 10px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Editor / Studio</h1>
+        <p style="margin:0; font-size: 0.9rem; color: #666;">Client-side canvas composition.</p>
+    </header>
+
+    <div class="toolbar">
+        <label class="file-upload">
+            Upload Image
+            <input type="file" id="imageLoader" accept="image/*" />
+        </label>
+        <button id="addTextBtn">Add Text</button>
+        <button id="addCircleBtn">Add Ring (Shape)</button>
+        <button id="removeBgBtn" title="Requires WebAssembly Model">Remove BG (Beta)</button>
+        <div style="flex-grow: 1;"></div>
+        <button id="downloadBtn" style="background-color: #28a745;">Download (Lossless PNG)</button>
+    </div>
+
+    <div class="canvas-wrapper">
+        <canvas id="editorCanvas" width="800" height="500"></canvas>
+    </div>
+
+    <script>
+        // 1. Initialize Canvas
+        const canvas = new fabric.Canvas('editorCanvas', {
+            preserveObjectStacking: true // Keeps selected objects from jumping to the front
+        });
+
+        // 2. Handle Image Upload
+        document.getElementById('imageLoader').addEventListener('change', function(e) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const imgObj = new Image();
+                imgObj.src = event.target.result;
+                imgObj.onload = function() {
+                    const image = new fabric.Image(imgObj);
+                    // Scale image down if it's too large for the canvas
+                    if (image.width > canvas.width) {
+                        image.scaleToWidth(canvas.width - 40);
+                    }
+                    canvas.centerObject(image);
+                    canvas.add(image);
+                    canvas.setActiveObject(image);
+                }
+            }
+            reader.readAsDataURL(e.target.files[0]);
+        });
+
+        // 3. Add Text
+        document.getElementById('addTextBtn').addEventListener('click', () => {
+            const text = new fabric.IText('Double click to edit', {
+                left: 100,
+                top: 100,
+                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto',
+                fill: '#000000',
+                fontSize: 40,
+                fontWeight: 'bold'
+            });
+            canvas.add(text);
+            canvas.setActiveObject(text);
+        });
+
+        // 4. Add Shapes (Ring / Circle)
+        document.getElementById('addCircleBtn').addEventListener('click', () => {
+            const circle = new fabric.Circle({
+                radius: 50,
+                left: 150,
+                top: 150,
+                fill: 'transparent',    // Transparent inside
+                stroke: '#ff5722',      // Colored border
+                strokeWidth: 5          // Width of the ring
+            });
+            canvas.add(circle);
+            canvas.setActiveObject(circle);
+        });
+
+        // 5. Download Lossless PNG
+        document.getElementById('downloadBtn').addEventListener('click', () => {
+            // Deselect objects so selection boxes don't show in the download
+            canvas.discardActiveObject();
+            canvas.renderAll();
+
+            // Export as PNG with a multiplier of 1 (1:1 ratio)
+            const dataURL = canvas.toDataURL({
+                format: 'png',
+                multiplier: 1,
+                quality: 1
+            });
+
+            // Trigger download via a temporary link
+            const link = document.createElement('a');
+            link.download = 'edited-composition.png';
+            link.href = dataURL;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+
+        // 6. Background Removal (Stub)
+        document.getElementById('removeBgBtn').addEventListener('click', () => {
+            alert("To run AI background removal purely in the browser, you will need to integrate a WebAssembly (WASM) library like '@imgly/background-removal'.\n\nSince it downloads a ~40MB AI model to the user's browser, it's best added as a separate module rather than a simple HTML script tag.");
+        });
+
+        // Bonus: Delete objects with the Backspace/Delete key
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Delete' || e.key === 'Backspace') {
+                const activeObjects = canvas.getActiveObjects();
+                if (activeObjects.length && !activeObjects[0].isEditing) {
+                    activeObjects.forEach(obj => canvas.remove(obj));
+                    canvas.discardActiveObject();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
