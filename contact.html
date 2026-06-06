@@ -163,6 +163,11 @@
             background-color: #fff;
         }
 
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
         .btn-submit {
             display: inline-block;
             width: 100%;
@@ -284,14 +289,26 @@
         </div>
 
         <div class="contact-form-container">
-            <form class="contact-form" action="https://docs.google.com/forms/d/e/1FAIpQLSdnFVNtsmcTibSbo4zrqI7915ff68Vc16GpESu_68plFYEfvw/formResponse" method="POST" target="hidden_iframe" onsubmit="document.getElementById('success-msg').style.display='block';">
+            <form class="contact-form" action="https://docs.google.com/forms/d/e/1FAIpQLSdnFVNtsmcTibSbo4zrqI7915ff68Vc16GpESu_68plFYEfvw/formResponse" method="POST" target="hidden_iframe" onsubmit="return handleFormSubmit()">
                 
                 <div class="form-group">
-                    <label for="name">Message</label>
-                    <input type="text" id="name" name="entry.1934216261" required placeholder="Your message here...">
+                    <label for="part1">Name</label>
+                    <input type="text" id="part1" required placeholder="Jane Doe">
                 </div>
                 
-                <button type="submit" class="btn-submit">Submit</button>
+                <div class="form-group">
+                    <label for="part2">Email / Contact</label>
+                    <input type="text" id="part2" required placeholder="jane@example.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="part3">Message</label>
+                    <textarea id="part3" required placeholder="How can we collaborate?"></textarea>
+                </div>
+                
+                <input type="hidden" id="finalMessage" name="entry.1934216261">
+                
+                <button type="submit" class="btn-submit">Send Message</button>
                 <div id="success-msg" class="success-message">Message sent successfully!</div>
             </form>
             
@@ -308,5 +325,32 @@
         </div>
     </footer>
 
+    <script>
+        function handleFormSubmit() {
+            // Retrieve values from the 3 distinct fields
+            const part1 = document.getElementById('part1').value;
+            const part2 = document.getElementById('part2').value;
+            const part3 = document.getElementById('part3').value;
+            
+            // Merge them using hyphens
+            const mergedMessage = part1 + " - " + part2 + " - " + part3;
+            
+            // Insert merged string into the hidden input connected to your Google Form ID
+            document.getElementById('finalMessage').value = mergedMessage;
+            
+            // Display success message
+            document.getElementById('success-msg').style.display = 'block';
+            
+            // Clear the visible form fields after a slight delay
+            setTimeout(() => {
+                document.getElementById('part1').value = '';
+                document.getElementById('part2').value = '';
+                document.getElementById('part3').value = '';
+            }, 500);
+
+            // Return true to allow the form submission to proceed to the iframe
+            return true;
+        }
+    </script>
 </body>
 </html>
