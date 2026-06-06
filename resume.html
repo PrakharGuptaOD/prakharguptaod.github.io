@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prakhar Gupta | Resume</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <style>
+        /* Minimalist aesthetic with elegant typography */
         :root {
             --bg: #fafafa;
             --text-primary: #111;
@@ -29,27 +31,94 @@
             color: var(--text-primary);
             font-family: var(--font-body);
             line-height: 1.6;
-            padding: 40px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
+        /* Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 40px 0 20px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 600;
+            font-style: italic;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--text-primary);
+            transition: opacity 0.2s;
+        }
+
+        .mobile-menu-btn:hover {
+            opacity: 0.6;
+        }
+
+        nav {
+            display: block;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--accent);
+        }
+
+        /* Resume Container (Paper Look) */
+        main {
+            flex-grow: 1;
+        }
+
+        .resume-container {
             background: #fff;
             padding: 60px;
             border: 1px solid var(--border);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            margin-bottom: 60px;
         }
 
-        /* Header */
-        header {
+        /* Resume Content Styling */
+        .resume-header {
             text-align: left;
             margin-bottom: 3rem;
             border-bottom: 2px solid var(--accent);
             padding-bottom: 2rem;
         }
 
-        h1 {
+        .resume-header h1 {
             font-family: var(--font-heading);
             font-size: 3rem;
             font-weight: 700;
@@ -86,7 +155,6 @@
             border-bottom: 1px solid var(--accent);
         }
 
-        /* Sections */
         section {
             margin-bottom: 3rem;
         }
@@ -109,7 +177,6 @@
             line-height: 1.8;
         }
 
-        /* Items (Experience/Education) */
         .resume-item {
             margin-bottom: 2rem;
         }
@@ -139,17 +206,16 @@
             display: block; 
         }
 
-        ul {
+        ul.bullets {
             margin-left: 1.2rem;
             color: var(--text-secondary);
             font-size: 0.95rem;
         }
 
-        li {
+        ul.bullets li {
             margin-bottom: 0.4rem;
         }
 
-        /* Skills Grid */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -164,6 +230,7 @@
             color: var(--text-primary);
             border-bottom: 1px dashed var(--border);
             padding-bottom: 0.5rem;
+            font-family: var(--font-body);
         }
 
         .tags {
@@ -180,7 +247,6 @@
             background-color: var(--bg);
         }
 
-        /* Projects */
         .project-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -214,142 +280,236 @@
             border-color: #555;
         }
 
-        /* Print Optimization */
-        @media print {
-            body {
-                padding: 0;
-                background: #fff;
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            transition: color 0.2s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 600px) {
+            header { padding-bottom: 20px; }
+            .mobile-menu-btn { display: block; }
+            nav {
+                width: 100%;
+                display: none;
+                margin-top: 20px;
+                padding-top: 20px;
+                border-top: 1px solid var(--border);
             }
-            .container {
-                border: none;
-                box-shadow: none;
-                padding: 0;
-                max-width: 100%;
+            nav.show { display: block; }
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            nav a {
+                font-family: var(--font-heading);
+                font-size: 1.5rem;
+                font-style: italic;
+                color: var(--text-primary);
+                display: block;
+            }
+            .resume-container { padding: 30px 20px; }
+            .item-header { flex-direction: column; }
+            .date { margin-top: 0.25rem; }
+            .resume-header h1 { font-size: 2.5rem; }
+            footer {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
             }
         }
 
-        @media (max-width: 600px) {
-            .container {
-                padding: 30px 20px;
-            }
-            .item-header { 
-                flex-direction: column; 
-            }
-            .date { 
-                margin-top: 0.25rem; 
-            }
-            h1 {
-                font-size: 2.5rem;
+        /* Print Optimization */
+        @media print {
+            body { background: #fff; padding: 0; }
+            header, footer { display: none; }
+            .resume-container {
+                border: none;
+                padding: 0;
+                margin: 0;
+                max-width: 100%;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <h1>Prakhar Gupta</h1>
-            <p class="subtitle">AI Developer & Researcher</p>
-            <div class="contact-bar">
-                <a href="mailto:prakhargupta.od@gmail.com">prakhargupta.od@gmail.com</a>
-                <span>+91 9555658787</span>
-                <span>Rudrapur, India</span>
-                <a href="https://linkedin.com/in/prakhar-kselis" target="_blank">LinkedIn</a>
-                <a href="https://github.com/PrakharGuptaOD" target="_blank">GitHub</a>
+    <header>
+        <a href="index.htm" class="logo">Prakhar Gupta</a>
+        
+        <button id="mobileMenuBtn" class="mobile-menu-btn">Menu</button>
+        
+        <nav id="navMenu">
+            <ul>
+                <li><a href="index.htm#about">About</a></li>
+                <li><a href="index.htm#projects">Projects</a></li>
+                <li><a href="index.htm#hobbies">Hobbies</a></li>
+                <li><a href="https://prakharguptaod.github.io/notes">Notes</a></li>
+                <li><a href="resume.html" class="active">Resume</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="resume-container">
+            <div class="resume-header">
+                <h1>Prakhar Gupta</h1>
+                <p class="subtitle">AI Developer & Researcher</p>
+                <div class="contact-bar">
+                    <a href="mailto:prakhargupta.od@gmail.com">prakhargupta.od@gmail.com</a>
+                    <span>+91 9555658787</span>
+                    <span>Rudrapur, India</span>
+                    <a href="https://linkedin.com/in/prakhar-kselis" target="_blank">LinkedIn</a>
+                    <a href="https://github.com/PrakharGuptaOD" target="_blank">GitHub</a>
+                </div>
             </div>
-        </header>
 
-        <section id="summary">
-            <h2>Summary</h2>
-            <p class="summary-text">
-                AI-focused undergraduate with hands-on experience in ML-driven analytics and small language models, specializing in applied AI and research-oriented systems.
-            </p>
-        </section>
+            <section id="summary">
+                <h2>Summary</h2>
+                <p class="summary-text">
+                    AI-focused undergraduate with hands-on experience in ML-driven analytics and small language models, specializing in applied AI and research-oriented systems.
+                </p>
+            </section>
 
-        <section id="skills">
-            <h2>Technical Profile</h2>
-            <div class="skills-grid">
-                <div class="skill-group">
-                    <h3>ML & Data Science</h3>
-                    <div class="tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">PyTorch</span>
-                        <span class="tag">TensorFlow</span>
-                        <span class="tag">Scikit-Learn</span>
-                        <span class="tag">Pandas</span>
-                        <span class="tag">NumPy</span>
-                        <span class="tag">NLP</span>
+            <section id="skills">
+                <h2>Technical Profile</h2>
+                <div class="skills-grid">
+                    <div class="skill-group">
+                        <h3>ML & Data Science</h3>
+                        <div class="tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">PyTorch</span>
+                            <span class="tag">TensorFlow</span>
+                            <span class="tag">Scikit-Learn</span>
+                            <span class="tag">Pandas</span>
+                            <span class="tag">NumPy</span>
+                            <span class="tag">NLP</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <h3>Engineering & Tools</h3>
+                        <div class="tags">
+                            <span class="tag">Git</span>
+                            <span class="tag">VS Code</span>
+                            <span class="tag">Google Colab</span>
+                            <span class="tag">Unity</span>
+                            <span class="tag">Discord API</span>
+                            <span class="tag">JavaScript</span>
+                        </div>
                     </div>
                 </div>
-                <div class="skill-group">
-                    <h3>Engineering & Tools</h3>
-                    <div class="tags">
-                        <span class="tag">Git</span>
-                        <span class="tag">VS Code</span>
-                        <span class="tag">Google Colab</span>
-                        <span class="tag">Unity</span>
-                        <span class="tag">Discord API</span>
-                        <span class="tag">JavaScript</span>
+            </section>
+
+            <section id="experience">
+                <h2>Professional Experience</h2>
+                <div class="resume-item">
+                    <div class="item-header">
+                        <span class="role">Intern</span>
+                        <span class="date">Feb 2026 – May 2026</span>
+                    </div>
+                    <span class="org">Annam.ai | Rupnagar, Punjab, IN</span>
+                    <ul class="bullets">
+                        <li>Engineered automated data collection pipeline for LMS identity mapping.</li>
+                        <li>Developed high-concurrency ticketing engine managing 1,000+ simultaneous tickets.</li>
+                        <li>Automated logistics for student evaluations using dynamic UI flows.</li>
+                        <li>Built scalable modular architecture using Python Cogs.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="education">
+                <h2>Education</h2>
+                <div class="resume-item">
+                    <div class="item-header">
+                        <span class="role">IIT Ropar</span>
+                        <span class="date">Completed Feb 2026</span>
+                    </div>
+                    <span class="org">Major in AI: Machine Learning, Deep Learning, and Artificial Intelligence</span>
+                </div>
+                <div class="resume-item">
+                    <div class="item-header">
+                        <span class="role">IIT Madras</span>
+                        <span class="date">Expected Graduation</span>
+                    </div>
+                    <span class="org">BS: Data Science and Applications (Foundation Level)</span>
+                </div>
+            </section>
+
+            <section id="projects">
+                <h2>Selected Works</h2>
+                <div class="project-grid">
+                    <div class="project-item">
+                        <h3>Newru Bot</h3>
+                        <p class="project-desc">Multipurpose corporate Discord bot with automated ticketing and member management.</p>
+                        <a href="https://github.com/PrakharGuptaOD/newru_bot" class="project-link">View Repository</a>
+                    </div>
+                    <div class="project-item">
+                        <h3>AI Quiz Generator</h3>
+                        <p class="project-desc">NLP-powered system extracting key concepts from books to generate smart quizzes.</p>
+                        <a href="https://github.com/PrakharGuptaOD/ai_quiz_based_on_book" class="project-link">View Repository</a>
+                    </div>
+                    <div class="project-item">
+                        <h3>Finetuned SLM Storyteller</h3>
+                        <p class="project-desc">Culturally aligned Small Language Model designed using logic-constrained synthetic data to prevent hallucinations.</p>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
+    </main>
 
-        <section id="experience">
-            <h2>Professional Experience</h2>
-            <div class="resume-item">
-                <div class="item-header">
-                    <span class="role">Intern</span>
-                    <span class="date">Feb 2026 – May 2026</span>
-                </div>
-                <span class="org">Annam.ai | Rupnagar, Punjab, IN</span>
-                <ul>
-                    <li>Engineered automated data collection pipeline for LMS identity mapping.</li>
-                    <li>Developed high-concurrency ticketing engine managing 1,000+ simultaneous tickets.</li>
-                    <li>Automated logistics for student evaluations using dynamic UI flows.</li>
-                    <li>Built scalable modular architecture using Python Cogs.</li>
-                </ul>
-            </div>
-        </section>
+    <footer>
+        <p>&copy; 2026 Prakhar Gupta.</p>
+        <div class="social-links">
+            <a href="https://github.com/PrakharGuptaOD"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/prakhar-kselis"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:prakhargupta.od@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+    </footer>
 
-        <section id="education">
-            <h2>Education</h2>
-            <div class="resume-item">
-                <div class="item-header">
-                    <span class="role">IIT Ropar</span>
-                    <span class="date">Completed Feb 2026</span>
-                </div>
-                <span class="org">Major in AI: Machine Learning, Deep Learning, and Artificial Intelligence</span>
-            </div>
-            <div class="resume-item">
-                <div class="item-header">
-                    <span class="role">IIT Madras</span>
-                    <span class="date">Expected Graduation</span>
-                </div>
-                <span class="org">BS: Data Science and Applications (Foundation Level)</span>
-            </div>
-        </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navMenu = document.getElementById('navMenu');
+            const navLinks = navMenu.querySelectorAll('a');
 
-        <section id="projects">
-            <h2>Selected Works</h2>
-            <div class="project-grid">
-                <div class="project-item">
-                    <h3>Newru Bot</h3>
-                    <p class="project-desc">Multipurpose corporate Discord bot with automated ticketing and member management.</p>
-                    <a href="https://github.com/PrakharGuptaOD/newru_bot" class="project-link">View Repository</a>
-                </div>
-                <div class="project-item">
-                    <h3>AI Quiz Generator</h3>
-                    <p class="project-desc">NLP-powered system extracting key concepts from books to generate smart quizzes.</p>
-                    <a href="https://github.com/PrakharGuptaOD/ai_quiz_based_on_book" class="project-link">View Repository</a>
-                </div>
-                <div class="project-item">
-                    <h3>Finetuned SLM Storyteller</h3>
-                    <p class="project-desc">Culturally aligned Small Language Model designed using logic-constrained synthetic data to prevent hallucinations.</p>
-                </div>
-            </div>
-        </section>
-    </div>
+            mobileMenuBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('show');
+                if (navMenu.classList.contains('show')) {
+                    mobileMenuBtn.textContent = 'Close';
+                } else {
+                    mobileMenuBtn.textContent = 'Menu';
+                }
+            });
 
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('show');
+                    mobileMenuBtn.textContent = 'Menu';
+                });
+            });
+        });
+    </script>
 </body>
 </html>
