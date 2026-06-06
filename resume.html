@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prakhar Gupta | AI Developer & Researcher</title>
+    <title>Prakhar Gupta | Resume</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap');
-
         :root {
-            --bg: #0f172a;
-            --card-bg: #1e293b;
-            --text-primary: #f1f5f9;
-            --text-secondary: #94a3b8;
-            --accent: #38bdf8;
-            --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
-            --border: #334155;
+            --bg: #fafafa;
+            --text-primary: #111;
+            --text-secondary: #555;
+            --accent: #000;
+            --border: #ddd;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
         * {
@@ -26,129 +27,143 @@
         body {
             background-color: var(--bg);
             color: var(--text-primary);
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-body);
             line-height: 1.6;
-            padding: 2rem 1rem;
+            padding: 40px 20px;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
+            background: #fff;
+            padding: 60px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
         }
 
         /* Header */
         header {
             text-align: left;
-            margin-bottom: 4rem;
-            animation: fadeIn 1s ease-out;
+            margin-bottom: 3rem;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 2rem;
         }
 
         h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 8vw, 4rem);
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem;
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            letter-spacing: -0.02em;
         }
 
         .subtitle {
-            font-size: 1.25rem;
-            color: var(--accent);
-            font-weight: 600;
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-style: italic;
+            color: var(--text-secondary);
             margin-bottom: 1.5rem;
-            letter-spacing: 1px;
         }
 
         .contact-bar {
             display: flex;
             flex-wrap: wrap;
             gap: 1.5rem;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         .contact-bar a {
             color: var(--text-primary);
             text-decoration: none;
-            transition: color 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
         }
 
         .contact-bar a:hover {
-            color: var(--accent);
+            border-bottom: 1px solid var(--accent);
         }
 
         /* Sections */
         section {
-            margin-bottom: 4rem;
-            animation: slideUp 1s ease-out;
+            margin-bottom: 3rem;
         }
 
         h2 {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 600;
             color: var(--accent);
             margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        h2::after {
-            content: "";
-            height: 1px;
-            flex-grow: 1;
-            background: var(--border);
+        .summary-text {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
         }
 
-        /* Experience Card */
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 1rem;
-            padding: 2rem;
-            margin-bottom: 1.5rem;
-            transition: transform 0.3s, border-color 0.3s;
+        /* Items (Experience/Education) */
+        .resume-item {
+            margin-bottom: 2rem;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-        }
-
-        .card-header {
+        .item-header {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
         }
 
-        .role { font-weight: 700; font-size: 1.2rem; }
-        .date { color: var(--accent); font-size: 0.9rem; font-weight: 600; }
-        .org { color: var(--text-secondary); margin-bottom: 1rem; display: block; }
+        .role { 
+            font-weight: 600; 
+            font-size: 1.1rem; 
+        }
+
+        .date { 
+            font-size: 0.9rem; 
+            color: var(--text-secondary); 
+            font-variant-numeric: tabular-nums;
+        }
+
+        .org { 
+            color: var(--text-secondary); 
+            font-style: italic;
+            margin-bottom: 0.75rem; 
+            display: block; 
+        }
+
+        ul {
+            margin-left: 1.2rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        li {
+            margin-bottom: 0.4rem;
+        }
 
         /* Skills Grid */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .skill-group {
-            background: rgba(56, 189, 248, 0.05);
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            border-left: 3px solid var(--accent);
+            gap: 2rem;
         }
 
         .skill-group h3 {
             font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
             margin-bottom: 1rem;
             color: var(--text-primary);
+            border-bottom: 1px dashed var(--border);
+            padding-bottom: 0.5rem;
         }
 
         .tags {
@@ -158,11 +173,11 @@
         }
 
         .tag {
-            background: var(--border);
+            border: 1px solid var(--border);
             padding: 0.25rem 0.75rem;
-            border-radius: 2rem;
             font-size: 0.8rem;
             color: var(--text-primary);
+            background-color: var(--bg);
         }
 
         /* Projects */
@@ -172,42 +187,60 @@
             gap: 1.5rem;
         }
 
-        .project-card {
-            padding: 1.5rem;
-            border-radius: 1rem;
-            background: linear-gradient(to right bottom, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-            border: 1px solid var(--border);
+        .project-item h3 {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            margin-bottom: 0.25rem;
         }
 
-        .project-card h3 {
-            margin-bottom: 0.75rem;
-            color: var(--accent);
+        .project-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
         }
 
         .project-link {
-            display: inline-block;
-            margin-top: 1rem;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-primary);
             text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
             border-bottom: 1px solid var(--accent);
+            display: inline-block;
         }
 
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .project-link:hover {
+            color: #555;
+            border-color: #555;
         }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Print Optimization */
+        @media print {
+            body {
+                padding: 0;
+                background: #fff;
+            }
+            .container {
+                border: none;
+                box-shadow: none;
+                padding: 0;
+                max-width: 100%;
+            }
         }
 
         @media (max-width: 600px) {
-            .card-header { flex-direction: column; }
-            .date { margin-top: 0.25rem; }
-            body { padding: 1rem; }
+            .container {
+                padding: 30px 20px;
+            }
+            .item-header { 
+                flex-direction: column; 
+            }
+            .date { 
+                margin-top: 0.25rem; 
+            }
+            h1 {
+                font-size: 2.5rem;
+            }
         }
     </style>
 </head>
@@ -228,13 +261,13 @@
 
         <section id="summary">
             <h2>Summary</h2>
-            <p style="color: var(--text-secondary); font-size: 1.1rem;">
+            <p class="summary-text">
                 AI-focused undergraduate with hands-on experience in ML-driven analytics and small language models, specializing in applied AI and research-oriented systems.
             </p>
         </section>
 
         <section id="skills">
-            <h2>Technical Stack</h2>
+            <h2>Technical Profile</h2>
             <div class="skills-grid">
                 <div class="skill-group">
                     <h3>ML & Data Science</h3>
@@ -263,14 +296,14 @@
         </section>
 
         <section id="experience">
-            <h2>Experience</h2>
-            <div class="card">
-                <div class="card-header">
+            <h2>Professional Experience</h2>
+            <div class="resume-item">
+                <div class="item-header">
                     <span class="role">Intern</span>
-                    <span class="date">02/2026 – 05/2026</span>
+                    <span class="date">Feb 2026 – May 2026</span>
                 </div>
                 <span class="org">Annam.ai | Rupnagar, Punjab, IN</span>
-                <ul style="margin-left: 1.2rem; margin-top: 1rem; color: var(--text-secondary);">
+                <ul>
                     <li>Engineered automated data collection pipeline for LMS identity mapping.</li>
                     <li>Developed high-concurrency ticketing engine managing 1,000+ simultaneous tickets.</li>
                     <li>Automated logistics for student evaluations using dynamic UI flows.</li>
@@ -281,38 +314,38 @@
 
         <section id="education">
             <h2>Education</h2>
-            <div class="card">
-                <div class="card-header">
+            <div class="resume-item">
+                <div class="item-header">
                     <span class="role">IIT Ropar</span>
-                    <span class="date">Ended 02/2026</span>
+                    <span class="date">Completed Feb 2026</span>
                 </div>
                 <span class="org">Major in AI: Machine Learning, Deep Learning, and Artificial Intelligence</span>
             </div>
-            <div class="card">
-                <div class="card-header">
+            <div class="resume-item">
+                <div class="item-header">
                     <span class="role">IIT Madras</span>
-                    <span class="date">Current</span>
+                    <span class="date">Expected Graduation</span>
                 </div>
                 <span class="org">BS: Data Science and Applications (Foundation Level)</span>
             </div>
         </section>
 
         <section id="projects">
-            <h2>Selected Projects</h2>
+            <h2>Selected Works</h2>
             <div class="project-grid">
-                <div class="project-card">
+                <div class="project-item">
                     <h3>Newru Bot</h3>
-                    <p style="color: var(--text-secondary);">Multipurpose corporate Discord bot with automated ticketing and member management.</p>
-                    <a href="https://github.com/PrakharGuptaOD/newru_bot" class="project-link">View Repository →</a>
+                    <p class="project-desc">Multipurpose corporate Discord bot with automated ticketing and member management.</p>
+                    <a href="https://github.com/PrakharGuptaOD/newru_bot" class="project-link">View Repository</a>
                 </div>
-                <div class="project-card">
+                <div class="project-item">
                     <h3>AI Quiz Generator</h3>
-                    <p style="color: var(--text-secondary);">NLP-powered system extracting key concepts from books to generate smart quizzes.</p>
-                    <a href="https://github.com/PrakharGuptaOD/ai_quiz_based_on_book" class="project-link">View Repository →</a>
+                    <p class="project-desc">NLP-powered system extracting key concepts from books to generate smart quizzes.</p>
+                    <a href="https://github.com/PrakharGuptaOD/ai_quiz_based_on_book" class="project-link">View Repository</a>
                 </div>
-                <div class="project-card">
+                <div class="project-item">
                     <h3>Finetuned SLM Storyteller</h3>
-                    <p style="color: var(--text-secondary);">Culturally aligned Small Language Model designed using logic-constrained synthetic data.</p>
+                    <p class="project-desc">Culturally aligned Small Language Model designed using logic-constrained synthetic data to prevent hallucinations.</p>
                 </div>
             </div>
         </section>
