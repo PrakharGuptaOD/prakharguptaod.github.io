@@ -42,10 +42,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap; /* Allows mobile menu to wrap cleanly */
             padding: 40px 0 20px 0;
             border-bottom: 1px solid var(--border);
             margin-bottom: 40px;
-            position: relative;
         }
 
         .logo {
@@ -55,6 +55,29 @@
             font-style: italic;
             color: var(--text);
             text-decoration: none;
+        }
+
+        /* Mobile Menu Text Button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--text);
+            transition: opacity 0.2s;
+        }
+
+        .mobile-menu-btn:hover {
+            opacity: 0.6;
+        }
+
+        nav {
+            display: block;
         }
 
         nav ul {
@@ -72,21 +95,6 @@
 
         nav a:hover {
             color: var(--accent);
-        }
-
-        /* Mobile Menu Button */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--text);
-            transition: color 0.2s;
-        }
-
-        .mobile-menu-btn:focus {
-            outline: none;
         }
 
         /* Hero Section */
@@ -197,7 +205,7 @@
             font-size: 0.95rem;
             color: #666;
             margin-bottom: 20px;
-            flex-grow: 1; /* Pushes the link to the bottom */
+            flex-grow: 1; 
         }
 
         .project-link {
@@ -243,38 +251,36 @@
         /* Mobile Responsiveness */
         @media (max-width: 600px) {
             header {
-                /* Keeps logo and hamburger on the same line */
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
+                padding-bottom: 20px;
             }
 
             .mobile-menu-btn {
-                display: block; /* Show hamburger on mobile */
+                display: block; 
+            }
+
+            nav {
+                width: 100%;
+                display: none; /* Hidden by default */
+                margin-top: 20px;
+                padding-top: 20px;
+                border-top: 1px solid var(--border);
+            }
+
+            nav.show {
+                display: block; /* Shown when JS toggles the class */
             }
 
             nav ul {
-                display: none; /* Hide standard menu */
                 flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: -20px; /* Offset for body padding */
-                width: calc(100% + 40px);
-                background-color: var(--bg);
-                padding: 20px 0;
-                border-bottom: 1px solid var(--border);
-                box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
-                z-index: 100;
-                text-align: center;
-                gap: 1.5rem;
-            }
-
-            nav ul.show {
-                display: flex; /* Show when toggled via JS */
+                gap: 1rem;
             }
 
             nav a {
-                font-size: 1.1rem;
+                /* Make mobile links large, elegant, and editorial */
+                font-family: var(--font-heading);
+                font-size: 1.5rem;
+                font-style: italic;
+                color: var(--text);
                 display: block;
             }
 
@@ -293,14 +299,15 @@
 
     <header>
         <a href="#home" class="logo">Prakhar Gupta</a>
-        <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Toggle menu">
-            <i class="fas fa-bars"></i>
-        </button>
-        <nav>
-            <ul id="navMenu">
+        
+        <button id="mobileMenuBtn" class="mobile-menu-btn">Menu</button>
+        
+        <nav id="navMenu">
+            <ul>
                 <li><a href="#about">About</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#hobbies">Hobbies</a></li>
+                <li><a href="https://prakharguptaod.github.io/notes">Notes</a></li>
                 <li><a href="resume.html">Resume</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
@@ -312,7 +319,7 @@
         <p>I'm Prakhar, an AI Developer and Researcher at IIT Madras & IIT Ropar, focused on LLMs, RAG systems, and automation.</p>
         <div class="btn-group">
             <a href="resume.html" class="btn btn-primary">View Resume</a>
-            <a href="https://prakharguptaod.github.io/contact.html" class="btn btn-outline">Contact Me</a>
+            <a href="https://prakharguptaod.github.io/notes" class="btn btn-outline">Read My Notes</a>
         </div>
     </section>
 
@@ -350,11 +357,13 @@
             <div class="project-card">
                 <h3>Photography</h3>
                 <p>A visual diary of moments, places, and perspectives captured through my lens.</p>
-                <a href="#" class="project-link">View Photos &rarr;</a> </div>
+                <a href="#" class="project-link">View Photos &rarr;</a>
+            </div>
             <div class="project-card">
                 <h3>Gallery of My Life</h3>
                 <p>A curated collection of written entries chronicling my personal experiences, reflections, and journeys.</p>
-                <a href="#" class="project-link">Read Entries &rarr;</a> </div>
+                <a href="#" class="project-link">Read Entries &rarr;</a>
+            </div>
         </div>
     </section>
 
@@ -372,19 +381,16 @@
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const navMenu = document.getElementById('navMenu');
             const navLinks = navMenu.querySelectorAll('a');
-            const icon = mobileMenuBtn.querySelector('i');
 
             // Toggle menu on button click
             mobileMenuBtn.addEventListener('click', () => {
                 navMenu.classList.toggle('show');
                 
-                // Swap between hamburger and X icon
+                // Swap text between Menu and Close
                 if (navMenu.classList.contains('show')) {
-                    icon.classList.remove('fa-bars');
-                    icon.classList.add('fa-times');
+                    mobileMenuBtn.textContent = 'Close';
                 } else {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
+                    mobileMenuBtn.textContent = 'Menu';
                 }
             });
 
@@ -392,8 +398,7 @@
             navLinks.forEach(link => {
                 link.addEventListener('click', () => {
                     navMenu.classList.remove('show');
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
+                    mobileMenuBtn.textContent = 'Menu';
                 });
             });
         });
