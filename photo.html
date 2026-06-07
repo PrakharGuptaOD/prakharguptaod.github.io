@@ -31,7 +31,7 @@
             font-family: var(--font-body);
             background-color: var(--bg);
             color: var(--text);
-            max-width: 1000px; /* Slightly wider for a photo gallery */
+            max-width: 1000px; 
             margin: 0 auto;
             padding: 0 20px;
             display: flex;
@@ -46,7 +46,7 @@
             align-items: center;
             padding: 40px 0 20px 0;
             border-bottom: 1px solid var(--border);
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
         .back-link {
@@ -64,7 +64,6 @@
 
         .back-link:hover { color: var(--accent); }
 
-        /* Page Header */
         h1 {
             font-family: var(--font-heading);
             font-size: 3rem;
@@ -75,39 +74,73 @@
         p.gallery-desc {
             color: var(--text-secondary);
             font-size: 1.1rem;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             max-width: 600px;
         }
 
-        main { flex-grow: 1; }
+        main { flex-grow: 1; display: flex; flex-direction: column; }
 
-        /* --- Collage Grid Layout --- */
-        .photo-collage {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 15px; 
-            margin-bottom: 60px;
+        /* --- Apple Watch Style Viewport (The Window) --- */
+        .gallery-viewport {
+            width: 100%;
+            height: 65vh; /* Takes up a large portion of the screen */
+            overflow: hidden;
+            background-color: #f4f4f4; /* Slightly darker to define the canvas edge */
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            position: relative;
+            cursor: grab;
+            margin-bottom: 40px;
+            /* Inner shadow to give it depth */
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.02);
         }
 
-        /* --- Individual Photo Container --- */
+        .gallery-viewport:active {
+            cursor: grabbing;
+        }
+
+        /* --- The Draggable Canvas --- */
+        .gallery-canvas {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            /* Centers the canvas initially */
+            transform: translate(-50%, -50%);
+            width: 1800px; /* Much larger than the screen */
+            height: 1200px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-content: center;
+            gap: 40px;
+            padding: 50px;
+        }
+
+        /* --- Scattered Photo Items (Original Aspect Ratios) --- */
         .photo-item {
             position: relative;
+            border-radius: 6px;
             overflow: hidden;
-            border-radius: 4px; 
-            aspect-ratio: 1 / 1; 
-            background-color: var(--border); 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 280px; /* Fixed height, but width adjusts automatically to aspect ratio */
+            width: max-content;
         }
 
-        /* --- The Image --- */
         .photo-item img {
-            width: 100%;
             height: 100%;
-            object-fit: cover; 
+            width: auto;
             display: block;
-            transition: transform 0.4s ease;
         }
 
-        /* --- Hover Overlay --- */
+        /* --- The "Scattering" Magic using Math --- */
+        /* This pushes specific items up, down, and rotates them randomly */
+        .photo-item:nth-child(2n) { margin-top: 80px; transform: rotate(2deg); }
+        .photo-item:nth-child(3n) { margin-bottom: 60px; transform: rotate(-3deg); }
+        .photo-item:nth-child(4n) { margin-top: -30px; transform: rotate(1.5deg); }
+        .photo-item:nth-child(5n) { margin-bottom: 40px; transform: rotate(-1.5deg); }
+
+        /* --- Hover Overlay & Interaction --- */
         .photo-overlay {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -121,16 +154,20 @@
 
         .expand-icon {
             color: #ffffff;
-            font-size: 2rem;
+            font-size: 2.5rem;
             text-decoration: none;
             transform: scale(0.8); 
             transition: transform 0.3s ease, color 0.2s ease;
-            /* Make the hit area slightly larger than the icon */
             padding: 20px;
         }
 
-        /* Hover Interactions */
-        .photo-item:hover img { transform: scale(1.05); }
+        /* Hovering over a photo straightens it out and pops it forward */
+        .photo-item:hover { 
+            transform: scale(1.08) rotate(0deg) !important; 
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+        
         .photo-item:hover .photo-overlay { opacity: 1; }
         .photo-item:hover .expand-icon { transform: scale(1); }
         .expand-icon:hover { color: #ccc; }
@@ -148,7 +185,7 @@
 
         @media (max-width: 600px) {
             h1 { font-size: 2.5rem; }
-            .photo-collage { grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)); }
+            .photo-item { height: 200px; } /* Slightly smaller photos on mobile */
         }
     </style>
 </head>
@@ -161,83 +198,69 @@
 
     <main>
         <h1>Captured <i>Moments.</i></h1>
-        <p class="gallery-desc">A visual diary of moments, places, and perspectives captured through my lens.</p>
+        <p class="gallery-desc">Click and drag to explore the canvas.</p>
 
-        <section class="photo-collage">
-            
-            <div class="photo-item">
-                <img src="https://drive.google.com/uc?export=view&id=1w33GAUiBCsG34r4SP0_9d_6-a-nkeD8w" loading="lazy" alt="Gallery Image 1">
-                <div class="photo-overlay">
-                    <a href="https://drive.google.com/file/d/1w33GAUiBCsG34r4SP0_9d_6-a-nkeD8w/view" target="_blank" rel="noopener noreferrer" class="expand-icon" title="Open in new tab">
-                        <i class="fas fa-external-link-alt"></i>
-                    </a>
+        <div class="gallery-viewport" id="viewport">
+            <div class="gallery-canvas" id="canvas">
+                
+                <div class="photo-item">
+                    <img src="https://drive.google.com/uc?export=view&id=1w33GAUiBCsG34r4SP0_9d_6-a-nkeD8w" draggable="false" loading="lazy" alt="Gallery Image">
+                    <div class="photo-overlay">
+                        <a href="https://drive.google.com/file/d/1w33GAUiBCsG34r4SP0_9d_6-a-nkeD8w/view" target="_blank" rel="noopener noreferrer" class="expand-icon"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="photo-item">
-                <img src="https://drive.google.com/uc?export=view&id=1j8gA0__3HcwwWlOfy71OWv3_ErTS-Alg" loading="lazy" alt="Gallery Image 2">
-                <div class="photo-overlay">
-                    <a href="https://drive.google.com/file/d/1j8gA0__3HcwwWlOfy71OWv3_ErTS-Alg/view" target="_blank" rel="noopener noreferrer" class="expand-icon" title="Open in new tab">
-                        <i class="fas fa-external-link-alt"></i>
-                    </a>
+                <div class="photo-item">
+                    <img src="https://drive.google.com/uc?export=view&id=1j8gA0__3HcwwWlOfy71OWv3_ErTS-Alg" draggable="false" loading="lazy" alt="Gallery Image">
+                    <div class="photo-overlay">
+                        <a href="https://drive.google.com/file/d/1j8gA0__3HcwwWlOfy71OWv3_ErTS-Alg/view" target="_blank" rel="noopener noreferrer" class="expand-icon"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="photo-item">
-                <img src="https://drive.google.com/uc?export=view&id=10L_49s8i2BZGPvFy6cX7iMozaVeRhy1H" loading="lazy" alt="Gallery Image 3">
-                <div class="photo-overlay">
-                    <a href="https://drive.google.com/file/d/10L_49s8i2BZGPvFy6cX7iMozaVeRhy1H/view" target="_blank" rel="noopener noreferrer" class="expand-icon" title="Open in new tab">
-                        <i class="fas fa-external-link-alt"></i>
-                    </a>
+                <div class="photo-item">
+                    <img src="https://drive.google.com/uc?export=view&id=10L_49s8i2BZGPvFy6cX7iMozaVeRhy1H" draggable="false" loading="lazy" alt="Gallery Image">
+                    <div class="photo-overlay">
+                        <a href="https://drive.google.com/file/d/10L_49s8i2BZGPvFy6cX7iMozaVeRhy1H/view" target="_blank" rel="noopener noreferrer" class="expand-icon"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="photo-item">
-                <img src="https://drive.google.com/uc?export=view&id=1g9ZdiXsF2XUseaF9ePWXG94ILwZxFnEH" loading="lazy" alt="Gallery Image 4">
-                <div class="photo-overlay">
-                    <a href="https://drive.google.com/file/d/1g9ZdiXsF2XUseaF9ePWXG94ILwZxFnEH/view" target="_blank" rel="noopener noreferrer" class="expand-icon" title="Open in new tab">
-                        <i class="fas fa-external-link-alt"></i>
-                    </a>
+                <div class="photo-item">
+                    <img src="https://drive.google.com/uc?export=view&id=1g9ZdiXsF2XUseaF9ePWXG94ILwZxFnEH" draggable="false" loading="lazy" alt="Gallery Image">
+                    <div class="photo-overlay">
+                        <a href="https://drive.google.com/file/d/1g9ZdiXsF2XUseaF9ePWXG94ILwZxFnEH/view" target="_blank" rel="noopener noreferrer" class="expand-icon"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="photo-item">
-                <img src="https://drive.google.com/uc?export=view&id=1XnUxuwnQTLEDEBGvWe9ZvajcfHYjet1t" loading="lazy" alt="Gallery Image 5">
-                <div class="photo-overlay">
-                    <a href="https://drive.google.com/file/d/1XnUxuwnQTLEDEBGvWe9ZvajcfHYjet1t/view" target="_blank" rel="noopener noreferrer" class="expand-icon" title="Open in new tab">
-                        <i class="fas fa-external-link-alt"></i>
-                    </a>
+                <div class="photo-item">
+                    <img src="https://drive.google.com/uc?export=view&id=1XnUxuwnQTLEDEBGvWe9ZvajcfHYjet1t" draggable="false" loading="lazy" alt="Gallery Image">
+                    <div class="photo-overlay">
+                        <a href="https://drive.google.com/file/d/1XnUxuwnQTLEDEBGvWe9ZvajcfHYjet1t/view" target="_blank" rel="noopener noreferrer" class="expand-icon"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="photo-item">
-                <img src="https://drive.google.com/uc?export=view&id=1FPow9ad-t5cq7WdwnEK9bT5QalsvMKpr" loading="lazy" alt="Gallery Image 6">
-                <div class="photo-overlay">
-                    <a href="https://drive.google.com/file/d/1FPow9ad-t5cq7WdwnEK9bT5QalsvMKpr/view" target="_blank" rel="noopener noreferrer" class="expand-icon" title="Open in new tab">
-                        <i class="fas fa-external-link-alt"></i>
-                    </a>
+                <div class="photo-item">
+                    <img src="https://drive.google.com/uc?export=view&id=1FPow9ad-t5cq7WdwnEK9bT5QalsvMKpr" draggable="false" loading="lazy" alt="Gallery Image">
+                    <div class="photo-overlay">
+                        <a href="https://drive.google.com/file/d/1FPow9ad-t5cq7WdwnEK9bT5QalsvMKpr/view" target="_blank" rel="noopener noreferrer" class="expand-icon"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="photo-item">
-                <img src="https://drive.google.com/uc?export=view&id=1IljxzIpK3kvB6KZF0g6C79jBA_8nM9gg" loading="lazy" alt="Gallery Image 7">
-                <div class="photo-overlay">
-                    <a href="https://drive.google.com/file/d/1IljxzIpK3kvB6KZF0g6C79jBA_8nM9gg/view" target="_blank" rel="noopener noreferrer" class="expand-icon" title="Open in new tab">
-                        <i class="fas fa-external-link-alt"></i>
-                    </a>
+                <div class="photo-item">
+                    <img src="https://drive.google.com/uc?export=view&id=1IljxzIpK3kvB6KZF0g6C79jBA_8nM9gg" draggable="false" loading="lazy" alt="Gallery Image">
+                    <div class="photo-overlay">
+                        <a href="https://drive.google.com/file/d/1IljxzIpK3kvB6KZF0g6C79jBA_8nM9gg/view" target="_blank" rel="noopener noreferrer" class="expand-icon"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="photo-item">
-                <img src="https://drive.google.com/uc?export=view&id=1jXEkkHsZOiK9XrSgPehlA_Ws1IcLdEhl" loading="lazy" alt="Gallery Image 8">
-                <div class="photo-overlay">
-                    <a href="https://drive.google.com/file/d/1jXEkkHsZOiK9XrSgPehlA_Ws1IcLdEhl/view" target="_blank" rel="noopener noreferrer" class="expand-icon" title="Open in new tab">
-                        <i class="fas fa-external-link-alt"></i>
-                    </a>
+                <div class="photo-item">
+                    <img src="https://drive.google.com/uc?export=view&id=1jXEkkHsZOiK9XrSgPehlA_Ws1IcLdEhl" draggable="false" loading="lazy" alt="Gallery Image">
+                    <div class="photo-overlay">
+                        <a href="https://drive.google.com/file/d/1jXEkkHsZOiK9XrSgPehlA_Ws1IcLdEhl/view" target="_blank" rel="noopener noreferrer" class="expand-icon"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
                 </div>
-            </div>
 
-        </section>
+            </div>
+        </div>
     </main>
 
     <footer>
@@ -247,5 +270,62 @@
         </div>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const viewport = document.getElementById('viewport');
+            const canvas = document.getElementById('canvas');
+            
+            let isDragging = false;
+            let startX, startY;
+            
+            // This stores the cumulative pan distance
+            let currentX = 0, currentY = 0;
+
+            // Mouse Events
+            viewport.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                // Capture where the user clicked relative to current pan position
+                startX = e.clientX - currentX;
+                startY = e.clientY - currentY;
+            });
+
+            window.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                e.preventDefault(); // Prevents text selection while dragging
+                
+                // Calculate new position
+                currentX = e.clientX - startX;
+                currentY = e.clientY - startY;
+                
+                // Apply transform. The -50% ensures it stays centered naturally.
+                canvas.style.transform = `translate(calc(-50% + ${currentX}px), calc(-50% + ${currentY}px))`;
+            });
+
+            // Touch Events for Mobile support
+            viewport.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                startX = e.touches[0].clientX - currentX;
+                startY = e.touches[0].clientY - currentY;
+            });
+
+            window.addEventListener('touchend', () => {
+                isDragging = false;
+            });
+
+            window.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                e.preventDefault(); // Prevents the whole web page from scrolling while panning the canvas
+                
+                currentX = e.touches[0].clientX - startX;
+                currentY = e.touches[0].clientY - startY;
+                
+                canvas.style.transform = `translate(calc(-50% + ${currentX}px), calc(-50% + ${currentY}px))`;
+            }, { passive: false });
+        });
+    </script>
 </body>
 </html>
