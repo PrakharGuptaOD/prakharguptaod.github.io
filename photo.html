@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     
     <style>
+        /* Base Minimalist Aesthetic */
         :root {
             --bg: #fafafa;
             --text: #111;
@@ -20,7 +21,11 @@
             --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             font-family: var(--font-body);
@@ -59,6 +64,7 @@
 
         .back-link:hover { color: var(--accent); }
 
+        /* Page Header */
         h1 {
             font-family: var(--font-heading);
             font-size: 3rem;
@@ -89,7 +95,7 @@
             break-inside: avoid; /* Prevents images from splitting across columns */
             border-radius: 4px;
             overflow: hidden;
-            background-color: var(--border);
+            background-color: var(--border); /* Placeholder color while loading */
         }
 
         .photo-item img {
@@ -136,6 +142,13 @@
             font-size: 0.9rem;
         }
 
+        /* Loading State */
+        .loading-text {
+            color: var(--text-secondary);
+            font-style: italic;
+            padding: 20px 0;
+        }
+
         /* Mobile Responsiveness */
         @media (max-width: 800px) {
             .masonry-gallery { column-count: 2; }
@@ -157,7 +170,9 @@
         <h1>Captured <i>Moments.</i></h1>
         <p class="gallery-desc">A visual diary of moments, places, and perspectives captured through my lens.</p>
 
-        <div class="masonry-gallery" id="galleryContainer"></div>
+        <div class="masonry-gallery" id="galleryContainer">
+            <div class="loading-text" id="loadingText">Developing negatives...</div>
+        </div>
     </main>
 
     <footer>
@@ -169,43 +184,62 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // 1. ADD YOUR FILE NAMES HERE
-            // These must match the exact names of the files you upload to your "photos" folder.
-            const myPhotos = [
-                "img1.jpg",
-                "img2.jpg",
-                "img3.jpg",
-                "img4.jpg",
-                "img5.jpg",
-                "img6.jpg",
-                "img7.jpg",
-                "img8.jpg"
-            ];
-
             const galleryContainer = document.getElementById('galleryContainer');
+            const loadingText = document.getElementById('loadingText');
+            
+            // Your GitHub repository details
+            const owner = 'PrakharGuptaOD';
+            const repo = 'prakharguptaod.github.io';
+            const folder = 'photos';
+            
+            // The GitHub API endpoint that lists files in the photos folder
+            const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${folder}`;
 
-            // 2. Loop through the array and generate the HTML
-            myPhotos.forEach(fileName => {
-                // The path to the image in your repo
-                const imagePath = `photos/${fileName}`;
+            fetch(apiUrl)
+                .then(response => {
+                    if (!response.ok) throw new Error('Could not fetch photos from GitHub API. Ensure the folder exists and is public.');
+                    return response.json();
+                })
+                .then(files => {
+                    // Remove the loading text once data is received
+                    if (loadingText) loadingText.remove();
 
-                // Create the wrapper div
-                const photoItem = document.createElement('div');
-                photoItem.className = 'photo-item';
+                    // Loop through whatever files GitHub found in that folder
+                    files.forEach(file => {
+                        // Check if the file is an image (ignores hidden files or READMEs)
+                        if (file.type === 'file' && file.name.match(/\.(jpe?g|png|gif|webp)$/i)) {
+                            
+                            // Use the relative path to load the image locally
+                            const imagePath = `${folder}/${file.name}`;
 
-                // Construct the HTML for the image and overlay
-                photoItem.innerHTML = `
-                    <img src="${imagePath}" loading="lazy" alt="Gallery Photo">
-                    <div class="photo-overlay">
-                        <a href="${imagePath}" target="_blank" rel="noopener noreferrer" class="expand-icon" title="Open in new tab">
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
-                    </div>
-                `;
+                            // Create the wrapper div
+                            const photoItem = document.createElement('div');
+                            photoItem.className = 'photo-item';
 
-                // Add it to the gallery
-                galleryContainer.appendChild(photoItem);
-            });
+                            // Construct the HTML for the image and overlay
+                            photoItem.innerHTML = `
+                                <img src="${imagePath}" loading="lazy" alt="${file.name}">
+                                <div class="photo-overlay">
+                                    <a href="${imagePath}" target="_blank" rel="noopener noreferrer" class="expand-icon" title="Open full resolution">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                </div>
+                            `;
+
+                            // Add it to the gallery
+                            galleryContainer.appendChild(photoItem);
+                        }
+                    });
+
+                    if (galleryContainer.innerHTML.trim() === '') {
+                        galleryContainer.innerHTML = '<p class="loading-text">No photos found in the directory.</p>';
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                    if (loadingText) loadingText.remove();
+                    galleryContainer.innerHTML = '<p style="color: #666; padding: 20px;">Unable to load gallery at this time. Make sure the /photos folder exists in your repository.</p>';
+                });
         });
     </script>
 </body>
