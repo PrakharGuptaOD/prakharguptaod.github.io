@@ -35,6 +35,7 @@
             margin: 0 auto;
             padding: 0 20px;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         /* Navigation */
@@ -42,7 +43,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap; /* Allows mobile menu to wrap cleanly */
+            flex-wrap: wrap;
             padding: 40px 0 20px 0;
             border-bottom: 1px solid var(--border);
             margin-bottom: 40px;
@@ -57,7 +58,6 @@
             text-decoration: none;
         }
 
-        /* Mobile Menu Text Button */
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -102,6 +102,7 @@
             padding: 60px 0;
             border-bottom: 1px solid var(--border);
             margin-bottom: 40px;
+            min-height: 40vh; /* Keeps layout stable during typing */
         }
 
         .hero h1 {
@@ -112,8 +113,23 @@
             margin-bottom: 20px;
         }
 
-        .hero h1 span {
+        .hero h1 span.italic-text {
             font-style: italic;
+        }
+
+        /* Blinking Cursor for Typing Effect */
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            background-color: var(--text);
+            animation: blink 1s step-end infinite;
+            margin-left: 2px;
+            vertical-align: text-bottom;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
 
         .hero p {
@@ -121,12 +137,25 @@
             color: #555;
             max-width: 650px;
             margin-bottom: 30px;
+            opacity: 0; /* Hidden initially for fade-in */
+            transform: translateY(10px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
         .btn-group {
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
+            opacity: 0; /* Hidden initially for fade-in */
+            transform: translateY(10px);
+            transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
+        }
+
+        /* Class added by JS after typing finishes */
+        .show-hero-elements .hero p,
+        .show-hero-elements .btn-group {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .btn {
@@ -158,9 +187,20 @@
             background-color: var(--hover-bg);
         }
 
-        /* Sections */
+        /* Sections & Scroll Animations */
         .section {
             margin-bottom: 60px;
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         h2 {
@@ -184,13 +224,14 @@
             padding: 20px;
             border-radius: 4px;
             background-color: #fff;
-            transition: border-color 0.2s;
+            transition: border-color 0.2s, transform 0.3s ease;
             display: flex;
             flex-direction: column;
         }
 
         .project-card:hover {
             border-color: #999;
+            transform: translateY(-3px); /* Subtle lift on hover */
         }
 
         .project-card h3 {
@@ -250,48 +291,33 @@
 
         /* Mobile Responsiveness */
         @media (max-width: 600px) {
-            header {
-                padding-bottom: 20px;
-            }
-
-            .mobile-menu-btn {
-                display: block; 
-            }
-
+            header { padding-bottom: 20px; }
+            .mobile-menu-btn { display: block; }
             nav {
                 width: 100%;
-                display: none; /* Hidden by default */
+                display: none;
                 margin-top: 20px;
                 padding-top: 20px;
                 border-top: 1px solid var(--border);
             }
-
-            nav.show {
-                display: block; /* Shown when JS toggles the class */
-            }
-
+            nav.show { display: block; }
             nav ul {
                 flex-direction: column;
                 gap: 1rem;
             }
-
             nav a {
-                /* Make mobile links large, elegant, and editorial */
                 font-family: var(--font-heading);
                 font-size: 1.5rem;
                 font-style: italic;
                 color: var(--text);
                 display: block;
             }
-
             footer {
                 flex-direction: column;
                 gap: 20px;
                 text-align: center;
             }
-            .hero h1 {
-                font-size: 2.2rem;
-            }
+            .hero h1 { font-size: 2.2rem; }
         }
     </style>
 </head>
@@ -299,14 +325,13 @@
 
     <header>
         <a href="#home" class="logo">Prakhar Gupta</a>
-        
         <button id="mobileMenuBtn" class="mobile-menu-btn">Menu</button>
-        
         <nav id="navMenu">
             <ul>
                 <li><a href="#about">About</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#hobbies">Hobbies</a></li>
+                <li><a href="https://prakharguptaod.github.io/notes">Notes</a></li>
                 <li><a href="resume.html">Resume</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
@@ -314,35 +339,37 @@
     </header>
 
     <section id="home" class="hero">
-        <h1>Building the future with <span>AI & Code.</span></h1>
+        <h1>
+            <span id="type-part-1"></span><span id="type-part-2" class="italic-text"></span><span class="cursor">&nbsp;</span>
+        </h1>
         <p>I'm Prakhar, an AI Developer and Researcher at IIT Madras & IIT Ropar, focused on LLMs, RAG systems, and automation.</p>
         <div class="btn-group">
             <a href="resume.html" class="btn btn-primary">View Resume</a>
-            <a href="https://prakharguptaod.github.io/contact.html" class="btn btn-outline">Contact Me</a>
+            <a href="https://prakharguptaod.github.io/notes" class="btn btn-outline">Read My Notes</a>
         </div>
     </section>
 
-    <section id="about" class="section">
+    <section id="about" class="section fade-in-up">
         <h2>About</h2>
         <div style="color: #555; font-size: 1rem;">
             <p>I am a Data Science undergraduate at <strong>IIT Madras</strong> and an AI Major student at <strong>IIT Ropar</strong>. My work sits at the intersection of Artificial Intelligence and software engineering. I specialize in building complex RAG pipelines, fine-tuning language models, and creating highly automated Discord systems for community management.</p>
         </div>
     </section>
 
-    <section id="projects" class="section">
+    <section id="projects" class="section fade-in-up">
         <h2>Selected Works</h2>
         <div class="project-grid">
-            <div class="project-card">
+            <div class="project-card fade-in-up" style="transition-delay: 0.1s;">
                 <h3>Newru Bot</h3>
                 <p>A semi-automated, self-deployable Discord bot for corporate usage with ticketing and member management.</p>
                 <a href="https://github.com/PrakharGuptaOD/newru_bot" class="project-link">GitHub Repo &rarr;</a>
             </div>
-            <div class="project-card">
+            <div class="project-card fade-in-up" style="transition-delay: 0.2s;">
                 <h3>AI Quiz Generator</h3>
                 <p>NLP system that generates smart quizzes directly from book content using Transformers and Streamlit.</p>
                 <a href="https://github.com/PrakharGuptaOD/ai_quiz_based_on_book" class="project-link">GitHub Repo &rarr;</a>
             </div>
-            <div class="project-card">
+            <div class="project-card fade-in-up" style="transition-delay: 0.3s;">
                 <h3>Historical Storyteller</h3>
                 <p>Culturally aligned Small Language Model (SLM) focused on reducing hallucinations in historical narratives.</p>
                 <span style="color: #888; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em;">RESEARCH</span>
@@ -350,23 +377,23 @@
         </div>
     </section>
 
-    <section id="hobbies" class="section">
+    <section id="hobbies" class="section fade-in-up">
         <h2>Hobbies & Musings</h2>
         <div class="project-grid">
-            <div class="project-card">
+            <div class="project-card fade-in-up" style="transition-delay: 0.1s;">
                 <h3>Photography</h3>
                 <p>A visual diary of moments, places, and perspectives captured through my lens.</p>
                 <a href="#" class="project-link">View Photos &rarr;</a>
             </div>
-            <div class="project-card">
+            <div class="project-card fade-in-up" style="transition-delay: 0.2s;">
                 <h3>Gallery of My Life</h3>
                 <p>A curated collection of written entries chronicling my personal experiences, reflections, and journeys.</p>
-                <a href="https://prakharguptaod.github.io/entries" class="project-link">Read Entries &rarr;</a>
+                <a href="gallery.html" class="project-link">Read Entries &rarr;</a>
             </div>
         </div>
     </section>
 
-    <footer>
+    <footer class="fade-in-up">
         <p>&copy; 2026 Prakhar Gupta.</p>
         <div class="social-links">
             <a href="https://github.com/PrakharGuptaOD"><i class="fab fa-github"></i></a>
@@ -377,29 +404,74 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            
+            /* --- Mobile Menu Logic --- */
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const navMenu = document.getElementById('navMenu');
             const navLinks = navMenu.querySelectorAll('a');
 
-            // Toggle menu on button click
             mobileMenuBtn.addEventListener('click', () => {
                 navMenu.classList.toggle('show');
-                
-                // Swap text between Menu and Close
-                if (navMenu.classList.contains('show')) {
-                    mobileMenuBtn.textContent = 'Close';
-                } else {
-                    mobileMenuBtn.textContent = 'Menu';
-                }
+                mobileMenuBtn.textContent = navMenu.classList.contains('show') ? 'Close' : 'Menu';
             });
 
-            // Close menu when a link is clicked
             navLinks.forEach(link => {
                 link.addEventListener('click', () => {
                     navMenu.classList.remove('show');
                     mobileMenuBtn.textContent = 'Menu';
                 });
             });
+
+
+            /* --- Typewriter Animation --- */
+            const part1Text = "Building the future with ";
+            const part2Text = "AI & Code.";
+            
+            const part1Element = document.getElementById('type-part-1');
+            const part2Element = document.getElementById('type-part-2');
+            
+            let i = 0;
+            let j = 0;
+            const typeSpeed = 50; // milliseconds per character
+
+            function typeWriter() {
+                if (i < part1Text.length) {
+                    part1Element.innerHTML += part1Text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, typeSpeed);
+                } else if (j < part2Text.length) {
+                    part2Element.innerHTML += part2Text.charAt(j);
+                    j++;
+                    setTimeout(typeWriter, typeSpeed);
+                } else {
+                    // When typing finishes, trigger fade-in for paragraph and buttons
+                    document.body.classList.add('show-hero-elements');
+                }
+            }
+            
+            // Start typing shortly after page load
+            setTimeout(typeWriter, 300);
+
+
+            /* --- Scroll Fade-In Animation --- */
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15 // Triggers when 15% of the element is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Stop observing once it's visible
+                    }
+                });
+            }, observerOptions);
+
+            // Select all elements with the fade-in-up class
+            const fadeElements = document.querySelectorAll('.fade-in-up');
+            fadeElements.forEach(el => observer.observe(el));
         });
     </script>
 </body>
