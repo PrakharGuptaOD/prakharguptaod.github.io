@@ -95,7 +95,7 @@
             break-inside: avoid; /* Prevents images from splitting across columns */
             border-radius: 4px;
             overflow: hidden;
-            background-color: var(--border); /* Placeholder color while loading */
+            background-color: var(--border);
         }
 
         .photo-item img {
@@ -142,13 +142,6 @@
             font-size: 0.9rem;
         }
 
-        /* Loading State */
-        .loading-text {
-            color: var(--text-secondary);
-            font-style: italic;
-            padding: 20px 0;
-        }
-
         /* Mobile Responsiveness */
         @media (max-width: 800px) {
             .masonry-gallery { column-count: 2; }
@@ -170,9 +163,7 @@
         <h1>Captured <i>Moments.</i></h1>
         <p class="gallery-desc">A visual diary of moments, places, and perspectives captured through my lens.</p>
 
-        <div class="masonry-gallery" id="galleryContainer">
-            <div class="loading-text" id="loadingText">Developing negatives...</div>
-        </div>
+        <div class="masonry-gallery" id="galleryContainer"></div>
     </main>
 
     <footer>
@@ -184,62 +175,40 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. ADD YOUR EXACT FILE NAMES HERE
+            // Update this list whenever you add a new photo to the 'photos' folder in your repository.
+            const myPhotos = [
+                "Dhaulagiri 1.png",
+                "Nilgiri North.png",
+                "Tilitso Himal.png"
+            ];
+
             const galleryContainer = document.getElementById('galleryContainer');
-            const loadingText = document.getElementById('loadingText');
-            
-            // Your GitHub repository details
-            const owner = 'PrakharGuptaOD';
-            const repo = 'prakharguptaod.github.io';
-            const folder = 'photos';
-            
-            // The GitHub API endpoint that lists files in the photos folder
-            const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${folder}`;
 
-            fetch(apiUrl)
-                .then(response => {
-                    if (!response.ok) throw new Error('Could not fetch photos from GitHub API. Ensure the folder exists and is public.');
-                    return response.json();
-                })
-                .then(files => {
-                    // Remove the loading text once data is received
-                    if (loadingText) loadingText.remove();
+            // 2. Build the HTML dynamically
+            myPhotos.forEach(fileName => {
+                
+                // Construct the path (assuming the 'photos' folder is in the same directory as this HTML file)
+                const imagePath = `photos/${fileName}`;
 
-                    // Loop through whatever files GitHub found in that folder
-                    files.forEach(file => {
-                        // Check if the file is an image (ignores hidden files or READMEs)
-                        if (file.type === 'file' && file.name.match(/\.(jpe?g|png|gif|webp)$/i)) {
-                            
-                            // Use the relative path to load the image locally
-                            const imagePath = `${folder}/${file.name}`;
+                // Create the wrapper
+                const photoItem = document.createElement('div');
+                photoItem.className = 'photo-item';
 
-                            // Create the wrapper div
-                            const photoItem = document.createElement('div');
-                            photoItem.className = 'photo-item';
+                // Inject the image and the overlay link
+                photoItem.innerHTML = `
+                    <img src="${imagePath}" loading="lazy" alt="Gallery Photo">
+                    <div class="photo-overlay">
+                        <a href="${imagePath}" target="_blank" rel="noopener noreferrer" class="expand-icon" title="Open in new tab">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                `;
 
-                            // Construct the HTML for the image and overlay
-                            photoItem.innerHTML = `
-                                <img src="${imagePath}" loading="lazy" alt="${file.name}">
-                                <div class="photo-overlay">
-                                    <a href="${imagePath}" target="_blank" rel="noopener noreferrer" class="expand-icon" title="Open full resolution">
-                                        <i class="fas fa-external-link-alt"></i>
-                                    </a>
-                                </div>
-                            `;
-
-                            // Add it to the gallery
-                            galleryContainer.appendChild(photoItem);
-                        }
-                    });
-
-                    if (galleryContainer.innerHTML.trim() === '') {
-                        galleryContainer.innerHTML = '<p class="loading-text">No photos found in the directory.</p>';
-                    }
-                })
-                .catch(error => {
-                    console.error(error);
-                    if (loadingText) loadingText.remove();
-                    galleryContainer.innerHTML = '<p style="color: #666; padding: 20px;">Unable to load gallery at this time. Make sure the /photos folder exists in your repository.</p>';
-                });
+                // Append to the grid
+                galleryContainer.appendChild(photoItem);
+            });
         });
     </script>
 </body>
