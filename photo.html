@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Photography | Prakhar Gupta</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Base Minimalist Aesthetic */
+        :root {
+            --bg: #fafafa;
+            --text: #111;
+            --text-secondary: #555;
+            --accent: #000;
+            --border: #ddd;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg);
+            color: var(--text);
+            max-width: 1000px; /* Slightly wider for a photo gallery */
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 0 20px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 40px;
+        }
+
+        .back-link {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }
+
+        .back-link:hover { color: var(--accent); }
+
+        /* Page Header */
+        h1 {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+        p.gallery-desc {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        main { flex-grow: 1; }
+
+        /* --- Collage Grid Layout --- */
+        .photo-collage {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px; 
+            margin-bottom: 60px;
+        }
+
+        /* --- Individual Photo Container --- */
+        .photo-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px; 
+            aspect-ratio: 1 / 1; 
+            background-color: var(--border); 
+        }
+
+        /* --- The Image --- */
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        /* --- Hover Overlay --- */
+        .photo-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.4); 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0; 
+            transition: opacity 0.3s ease;
+        }
+
+        .expand-icon {
+            color: #ffffff;
+            font-size: 2rem;
+            text-decoration: none;
+            transform: scale(0.8); 
+            transition: transform 0.3s ease, color 0.2s ease;
+            /* Make the hit area slightly larger than the icon */
+            padding: 20px;
+        }
+
+        /* Hover Interactions */
+        .photo-item:hover img { transform: scale(1.05); }
+        .photo-item:hover .photo-overlay { opacity: 1; }
+        .photo-item:hover .expand-icon { transform: scale(1); }
+        .expand-icon:hover { color: #ccc; }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.5rem; }
+            .photo-collage { grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.htm" class="back-link"><i class="fas fa-arrow-left"></i> Home</a>
+        <span style="font-family: var(--font-heading); font-style: italic; color: var(--text-secondary);">Visuals</span>
+    </header>
+
+    <main>
+        <h1>Captured <i>Moments.</i></h1>
+        <p class="gallery-desc">A visual diary of moments, places, and perspectives captured through my lens.</p>
+
+        <section class="photo-collage">
+            
+            <div class="photo-item">
+                <img src="https://drive.google.com/uc?export=view&id=1w33GAUiBCsG34r4SP0_9d_6-a-nkeD8w" loading="lazy" alt="Gallery Image 1">
+                <div class="photo-overlay">
+                    <a href="https://drive.google.com/file/d/1w33GAUiBCsG34r4SP0_9d_6-a-nkeD8w/view" target="_blank" rel="noopener noreferrer" class="expand-icon" title="Open in new tab">
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="photo-item">
+                <img src="https://drive.google.com/uc?export=view&id=1j8gA0__3HcwwWlOfy71OWv3_ErTS-Alg" loading="lazy" alt="Gallery Image 2">
+                <div class="photo-overlay">
+                    <a href="https://drive.google.com/file/d/1j8gA0__3HcwwWlOfy71OWv3_ErTS-Alg/view" target="_blank" rel="noopener noreferrer" class="expand-icon" title="Open in new tab">
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="photo-item">
+                <img src="https://drive.google.com/uc?export=view&id=10L_49s8i2BZGPvFy6cX7iMozaVeRhy1H" loading="lazy" alt="Gallery Image 3">
+                <div class="photo-overlay">
+                    <a href="https://drive.google.com/file/d/10L_49s8i2BZGPvFy6cX7iMozaVeRhy1H/view" target="_blank" rel="noopener noreferrer" class="expand-icon" title="Open in new tab">
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="photo-item">
+                <img src="https://drive.google.com/uc?export=view&id=1g9ZdiXsF2XUseaF9ePWXG94ILwZxFnEH" loading="lazy" alt="Gallery Image 4">
+                <div class="photo-overlay">
+                    <a href="https://drive.google.com/file/d/1g9ZdiXsF2XUseaF9ePWXG94ILwZxFnEH/view" target="_blank" rel="noopener noreferrer" class="expand-icon" title="Open in new tab">
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="photo-item">
+                <img src="https://drive.google.com/uc?export=view&id=1XnUxuwnQTLEDEBGvWe9ZvajcfHYjet1t" loading="lazy" alt="Gallery Image 5">
+                <div class="photo-overlay">
+                    <a href="https://drive.google.com/file/d/1XnUxuwnQTLEDEBGvWe9ZvajcfHYjet1t/view" target="_blank" rel="noopener noreferrer" class="expand-icon" title="Open in new tab">
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="photo-item">
+                <img src="https://drive.google.com/uc?export=view&id=1FPow9ad-t5cq7WdwnEK9bT5QalsvMKpr" loading="lazy" alt="Gallery Image 6">
+                <div class="photo-overlay">
+                    <a href="https://drive.google.com/file/d/1FPow9ad-t5cq7WdwnEK9bT5QalsvMKpr/view" target="_blank" rel="noopener noreferrer" class="expand-icon" title="Open in new tab">
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="photo-item">
+                <img src="https://drive.google.com/uc?export=view&id=1IljxzIpK3kvB6KZF0g6C79jBA_8nM9gg" loading="lazy" alt="Gallery Image 7">
+                <div class="photo-overlay">
+                    <a href="https://drive.google.com/file/d/1IljxzIpK3kvB6KZF0g6C79jBA_8nM9gg/view" target="_blank" rel="noopener noreferrer" class="expand-icon" title="Open in new tab">
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="photo-item">
+                <img src="https://drive.google.com/uc?export=view&id=1jXEkkHsZOiK9XrSgPehlA_Ws1IcLdEhl" loading="lazy" alt="Gallery Image 8">
+                <div class="photo-overlay">
+                    <a href="https://drive.google.com/file/d/1jXEkkHsZOiK9XrSgPehlA_Ws1IcLdEhl/view" target="_blank" rel="noopener noreferrer" class="expand-icon" title="Open in new tab">
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Prakhar Gupta.</p>
+        <div style="font-family: var(--font-heading); font-style: italic;">
+            Through the lens.
+        </div>
+    </footer>
+
+</body>
+</html>
