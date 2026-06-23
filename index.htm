@@ -106,7 +106,7 @@
             padding: 60px 0;
             border-bottom: 1px solid var(--border);
             margin-bottom: 40px;
-            min-height: 40vh; /* Keeps layout stable during typing */
+            min-height: 40vh;
         }
 
         .hero h1 {
@@ -121,7 +121,6 @@
             font-style: italic;
         }
 
-        /* Blinking Cursor for Typing Effect */
         .cursor {
             display: inline-block;
             width: 2px;
@@ -141,7 +140,7 @@
             color: #555;
             max-width: 650px;
             margin-bottom: 30px;
-            opacity: 0; /* Hidden initially for fade-in */
+            opacity: 0;
             transform: translateY(10px);
             transition: opacity 0.8s ease, transform 0.8s ease;
         }
@@ -150,12 +149,11 @@
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
-            opacity: 0; /* Hidden initially for fade-in */
+            opacity: 0;
             transform: translateY(10px);
             transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
         }
 
-        /* Class added by JS after typing finishes */
         .show-hero-elements .hero p,
         .show-hero-elements .btn-group {
             opacity: 1;
@@ -235,7 +233,7 @@
 
         .project-card:hover {
             border-color: #999;
-            transform: translateY(-3px); /* Subtle lift on hover */
+            transform: translateY(-3px);
         }
 
         .project-card h3 {
@@ -345,7 +343,7 @@
         <h1>
             <span id="type-part-1"></span><span id="type-part-2" class="italic-text"></span><span class="cursor">&nbsp;</span>
         </h1>
-        <p>I'm Prakhar, an undergraduate Student at IIT Madras, focused on LLMs, RAG systems, automation and new technologies in industry.</p>
+        <p>I'm Prakhar, an AI developer and undergraduate student at IIT Madras & IIT Ropar, focused on deploying LLMs, automation, and building systems for universal education.</p>
         <div class="btn-group">
             <a href="resume.html" class="btn btn-primary">View Resume</a>
             <a href="contact.html" class="btn btn-outline">Contact Me</a>
@@ -353,9 +351,11 @@
     </section>
 
     <section id="about" class="section fade-in-up">
-        <h2>About</h2>
+        <h2>About Me</h2>
         <div style="color: #555; font-size: 1rem;">
-            <p>I am a Data Science undergraduate at <strong>IIT Madras</strong> and an AI Major student at <strong>IIT Ropar</strong>. My work sits at the intersection of Artificial Intelligence and software engineering. I specialize in building complex RAG pipelines, fine-tuning language models, and creating highly automated Discord systems for community management.</p>
+            <p>I am a Data Science undergraduate at <strong>IIT Madras</strong> and an AI Major student at <strong>IIT Ropar</strong>. My work sits at the intersection of Artificial Intelligence and software engineering. I specialize in building complex RAG pipelines, fine-tuning language models, and creating highly automated Discord systems for large-scale community management.</p>
+            <br>
+            <p>Operating as both a developer and a tutor, I am currently channeling these skills into my initiative, <strong>KSELIS</strong>—a vision to democratize quality education globally. By experimenting with online communities and remote higher education, my goal is to build the technical infrastructure needed to make inclusive learning a reality.</p>
         </div>
     </section>
 
@@ -363,18 +363,18 @@
         <h2>Selected Works</h2>
         <div class="project-grid">
             <div class="project-card fade-in-up" style="transition-delay: 0.1s;">
-                <h3>Newru Bot</h3>
-                <p>A semi-automated, self-deployable Discord bot for corporate usage with ticketing and member management.</p>
-                <a href="https://github.com/PrakharGuptaOD/newru_bot" class="project-link">GitHub Repo &rarr;</a>
+                <h3>KSELIS E-Resource Library</h3>
+                <p>The pilot platform for the KSELIS vision. A community-maintained library providing free, high-quality educational materials for students in higher education.</p>
+                <a href="https://kselis.github.io" class="project-link">View Project &rarr;</a>
             </div>
             <div class="project-card fade-in-up" style="transition-delay: 0.2s;">
-                <h3>AI Quiz Generator</h3>
-                <p>NLP system that generates smart quizzes directly from book content using Transformers and Streamlit.</p>
-                <a href="https://github.com/PrakharGuptaOD/ai_quiz_based_on_book" class="project-link">GitHub Repo &rarr;</a>
+                <h3>Newru Bot</h3>
+                <p>A semi-automated, self-deployable Discord bot for corporate usage with multi-layer ticketing and member management.</p>
+                <a href="https://github.com/PrakharGuptaOD/newru_bot" class="project-link">GitHub Repo &rarr;</a>
             </div>
             <div class="project-card fade-in-up" style="transition-delay: 0.3s;">
                 <h3>Historical Storyteller</h3>
-                <p>Culturally aligned Small Language Model (SLM) focused on reducing hallucinations in historical narratives.</p>
+                <p>Culturally aligned Small Language Model (SLM) utilizing a segregated logic framework to reduce hallucinations in historical narratives.</p>
                 <span style="color: #888; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em;">RESEARCH</span>
             </div>
         </div>
@@ -435,7 +435,7 @@
             
             let i = 0;
             let j = 0;
-            const typeSpeed = 50; // milliseconds per character
+            const typeSpeed = 50; 
 
             function typeWriter() {
                 if (i < part1Text.length) {
@@ -447,12 +447,10 @@
                     j++;
                     setTimeout(typeWriter, typeSpeed);
                 } else {
-                    // When typing finishes, trigger fade-in for paragraph and buttons
                     document.body.classList.add('show-hero-elements');
                 }
             }
             
-            // Start typing shortly after page load
             setTimeout(typeWriter, 300);
 
 
@@ -460,19 +458,18 @@
             const observerOptions = {
                 root: null,
                 rootMargin: '0px',
-                threshold: 0.15 // Triggers when 15% of the element is visible
+                threshold: 0.15 
             };
 
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
-                        observer.unobserve(entry.target); // Stop observing once it's visible
+                        observer.unobserve(entry.target);
                     }
                 });
             }, observerOptions);
 
-            // Select all elements with the fade-in-up class
             const fadeElements = document.querySelectorAll('.fade-in-up');
             fadeElements.forEach(el => observer.observe(el));
         });
